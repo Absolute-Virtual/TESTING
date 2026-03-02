@@ -6,7 +6,44 @@
     <title>Home | Naviport</title>
     <style>
 
-        /* START OF CODE FOR ALL BASEPLATE WHEN MAKING NEW FILE */
+        @keyframes reveal {
+            from { 
+                opacity: 0; 
+                transform: translateY(10px);; 
+            }
+
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .animate-fade {
+            opacity: 0; 
+            animation: reveal 0.8s ease-out forwards;
+            will-change: transform, opacity;
+        }
+
+
+        header { 
+            animation-delay: 0.1s; 
+        }
+
+        .hero-section h1 { 
+            animation-delay: 0.3s; 
+        }
+
+        .hero-section p { 
+            animation-delay: 0.5s; 
+        }
+
+        .hero-btns { 
+            animation-delay: 0.7s; 
+        }
+
+        .services-bar { 
+            animation-delay: 0.9s; 
+        }
 
         * {
             font-family: Arial, sans-serif;
@@ -16,14 +53,15 @@
         }
 
         body {
-            background-color: #fcfcfc;
+            background-color: #020E4C; 
+            overflow-x: hidden;
         }
 
         header {
             width: 100%;
             height: 85px;
             background-color: #020E4C;
-            position: fixed;
+            position: absolute; 
             top: 0;
             left: 0;
             display: flex;
@@ -90,10 +128,27 @@
             background-color: #FFB11A;
             border: solid 2px #020E4C;
             color: white;
-            box-shadow: 4px 4px 0px #FFB11A, 
-                        -4px 4px 0px #FFB11A, 
-                        4px -4px 0px #FFB11A, 
-                        -4px -4px 0px #FFB11A;
+            box-shadow: 4px 4px 0px #FFB11A, -4px 4px 0px #FFB11A, 4px -4px 0px #FFB11A, -4px -4px 0px #FFB11A;
+            transform: translateY(-2px);
+        }
+
+        .mainbuttons {
+            color: #Ffffff;
+            border: solid 2px #FFB11A;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background-color: transparent;
+            display: inline-block;
+        }
+
+        .mainbuttons:hover {
+            background-color: #FFB11A;
+            border: solid 2px #ffffff;
+            color: white;
+            box-shadow: 4px 4px 0px #FFB11A, -4px 4px 0px #FFB11A, 4px -4px 0px #FFB11A, -4px -4px 0px #FFB11A;
             transform: translateY(-2px);
         }
 
@@ -140,11 +195,11 @@
             z-index: 99;
             box-shadow: -10px 0 20px rgba(0,0,0,0.4);
             transform: translateX(100%);
-            transition: transform 0.4s ease-in-out; 
+            transition: transform 0.4s ease-in-out;
         }
 
-        .nav-links.open {
-            transform: translateX(0);
+        .nav-links.open { 
+            transform: translateX(0); 
         }
 
         .nav-links .categ {
@@ -154,17 +209,16 @@
             text-decoration: none;
             font-weight: bold;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease; 
+            transition: all 0.3s ease;
             display: block;
         }
 
         .nav-links .categ:hover {
             background-color: #FFB11A;
             color: #020E4C;
-            padding-left: 60px; 
+            padding-left: 60px;
         }
 
-        /* MOBILE */
         .mobile-auth {
             display: none;
             padding: 0 40px 20px 40px;
@@ -178,48 +232,112 @@
         }
 
         @media screen and (max-width: 768px) {
-            .right-nav .deactivated-location {
-                display: none;
-            }
-            
-            .mobile-auth {
-                display: block;
+
+            .right-nav .deactivated-location { 
+                display: none; 
             }
 
-            .academy-name {
-                font-size: 12px;
+            .mobile-auth { 
+                display: block; 
             }
-            
-            .naviport-name {
-                font-size: 14px;
+
+            .academy-name { 
+                font-size: 12px; 
             }
-            
-            .brand-container {
-                gap: 10px;
+
+            .naviport-name { 
+                font-size: 14px; 
+            }
+
+            .brand-container { 
+                gap: 10px; 
+            }
+
+            .services-bar { 
+                grid-template-columns: 1fr !important; 
+            }
+
+            .hero-section h1 { 
+                font-size: 2.5rem !important;
             }
         }
 
-        main {
-            margin-top: 120px;
-            padding: 40px;
+        main { 
+            margin-top: 0;
+            background-color: #020E4C; 
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 80vh;
+            background: linear-gradient(rgba(2, 14, 76, 0.3), rgba(2, 14, 76, 0.5)), url('PLACEHOLDER.png') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 85px 8% 50px 8%; 
+            color: white;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .services-bar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            background-color: #01082d;
+            min-height: 160px;
+        }
+
+        .service-item {
+            padding: 30px 15px;
             text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            color: #FFB11A;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
+        .service-item:last-child { 
+            border-right: none; 
+        }
+
+        .service-item:hover { 
+            background: #020E4C; 
+        }
+
+        .service-item h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        
         footer {
             text-align: center;
             padding: 20px;
+            background: #01082d;
             color: #666;
             font-size: 12px;
         }
-
-         /* END OF CODE FOR ALL BASEPLATE WHEN MAKING NEW FILE */
     </style>
 </head>
 <body>
 
-    <header id="main-header">
-        <a href="HOMENAVIPORT.html" class="brand-container" id="header-brand">
-            <img src="JCA.png" alt="JCA Logo">
+    <header id="main-header" class="animate-fade">
+        <a href="#" class="brand-container">
+            <img src="JCA.PNG" alt="JCA Logo">
             <div class="title-group">
                 <span class="academy-name">JCSGO Christian Academy</span>
                 <span class="naviport-name">JCA Naviport</span>
@@ -242,7 +360,6 @@
                 <a href="#" class="deactivated-location">Log In</a>
                 <a href="#" class="deactivated-location">Sign Up</a>
             </div>
-
             <a href="#" class="categ">HOME</a>
             <a href="#" class="categ">CONTACTS</a>
             <a href="#" class="categ">ABOUT US</a>
@@ -250,7 +367,22 @@
     </header>
 
     <main>
-        <h1>Welcome to Naviport</h1>
+        <section class="hero-section">
+            <h1 class="animate-fade">Welcome to Naviport</h1>
+            <p class="animate-fade">PLACEHOLDER(text plez guys)</p>
+            <div class="hero-btns animate-fade">
+                <a href="#" class="mainbuttons">Our Team</a>
+                <a href="#" class="mainbuttons" style="margin-left:10px;">Take Test</a>
+            </div>
+        </section>
+
+        <section class="services-bar animate-fade">
+            <a href="#" class="service-item"><h3>In Depth Career Profiles</h3></a>
+            <a href="#" class="service-item"><h3>Market & Industry</h3></a>
+            <a href="#" class="service-item"><h3>Strand Output</h3></a>
+            <a href="#" class="service-item"><h3>Core Values</h3></a>
+            <a href="#" class="service-item"><h3>Online Test</h3></a>
+        </section>
     </main>
 
     <footer>
@@ -274,6 +406,4 @@
         });
     </script>
 </body>
-
 </html>
-
