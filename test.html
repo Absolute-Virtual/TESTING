@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Track Identification Test | JCA Naviport</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
+  :root{--navy:#020E4C;--gold:#FFB11A;--gold-light:#FFD06A;--white:#ffffff;--light-bg:#F4F6FB;--card-bg:#ffffff;--text-dark:#1a1a2e;--text-mid:#444466;--border:#e0e4f0;--shadow:0 4px 24px rgba(2,14,76,0.10);--shadow-hover:0 8px 36px rgba(2,14,76,0.18);}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Open Sans',sans-serif;background:var(--light-bg);color:var(--text-dark);min-height:100vh;}
+  header{background:var(--navy);position:fixed;top:0;left:0;right:0;z-index:1000;box-shadow:0 2px 16px rgba(0,0,0,0.25);}
+  .header-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
+  .logo-area{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .logo-area img{height:42px;width:42px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:var(--gold);}
+  .logo-text{display:flex;flex-direction:column;}
+  .logo-school{font-family:'Poppins',sans-serif;font-weight:700;font-size:0.85rem;color:var(--white);line-height:1.2;}
+  .logo-nav{font-family:'Poppins',sans-serif;font-weight:600;font-size:0.75rem;color:var(--gold);letter-spacing:0.05em;}
+  nav.desktop-nav{display:flex;}
+  nav.desktop-nav a{color:rgba(255,255,255,0.82);text-decoration:none;font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:500;padding:0 1rem;height:64px;display:flex;align-items:center;letter-spacing:0.04em;transition:color .2s,background .2s;border-bottom:3px solid transparent;}
+  nav.desktop-nav a:hover{color:var(--gold);border-bottom-color:var(--gold);background:rgba(255,255,255,0.05);}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-nav{display:none;background:var(--navy);border-top:1px solid rgba(255,255,255,0.1);}
+  .mobile-nav.open{display:block;}
+  .mobile-nav a{display:block;color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:500;padding:.9rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.07);transition:color .2s,padding .2s;}
+  .mobile-nav a:hover{color:var(--gold);padding-left:2rem;}
+  main{max-width:800px;margin:0 auto;padding:96px 1.5rem 3rem;}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .hero{text-align:center;margin-bottom:2.2rem;animation:fadeInUp .5s ease both;}
+  .hero-badge{display:inline-block;background:var(--navy);color:var(--gold);font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;padding:5px 16px;border-radius:99px;margin-bottom:1rem;}
+  .hero h1{font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(1.5rem,4vw,2.2rem);color:var(--navy);margin-bottom:.5rem;line-height:1.2;}
+  .hero h1 span{color:var(--gold);}
+  .hero p{color:var(--text-mid);font-size:.92rem;line-height:1.65;max-width:540px;margin:0 auto;}
+  .qr-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;box-shadow:var(--shadow);animation:fadeInUp .5s ease .08s both;}
+  .qr-box{flex-shrink:0;width:116px;height:116px;border:3px solid var(--navy);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;}
+  .qr-info h3{font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.3rem;}
+  .qr-info p{font-size:.8rem;color:var(--text-mid);line-height:1.55;margin-bottom:.45rem;}
+  .qr-url{display:inline-block;font-size:.72rem;font-weight:600;color:var(--navy);background:var(--light-bg);border:1px solid var(--border);padding:3px 10px;border-radius:6px;word-break:break-all;}
+  .prog-wrap{margin-bottom:1.5rem;animation:fadeInUp .5s ease .12s both;}
+  .prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.45rem;}
+  .prog-label{font-family:'Poppins',sans-serif;font-weight:600;font-size:.78rem;color:var(--text-mid);}
+  .prog-count{font-family:'Poppins',sans-serif;font-weight:700;font-size:.78rem;color:var(--navy);}
+  .prog-bar{height:8px;background:var(--border);border-radius:99px;overflow:hidden;}
+  .prog-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--gold));border-radius:99px;transition:width .4s cubic-bezier(.4,0,.2,1);}
+  .q-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:16px;padding:1.75rem;box-shadow:var(--shadow);animation:fadeInUp .4s ease both;}
+  .q-num{font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);background:rgba(255,177,26,.12);padding:3px 12px;border-radius:99px;display:inline-block;margin-bottom:.8rem;letter-spacing:.06em;}
+  .q-text{font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;color:var(--navy);margin-bottom:1.3rem;line-height:1.5;}
+  .choices{display:flex;flex-direction:column;gap:.6rem;}
+  .choice-btn{width:100%;text-align:left;background:var(--light-bg);border:1.5px solid var(--border);border-radius:10px;padding:.8rem 1rem;font-family:'Open Sans',sans-serif;font-size:.88rem;color:var(--text-dark);cursor:pointer;transition:all .18s;display:flex;align-items:flex-start;gap:10px;line-height:1.45;}
+  .choice-btn:hover{border-color:var(--gold);background:rgba(255,177,26,.07);color:var(--navy);}
+  .choice-btn.selected{border-color:var(--navy);background:rgba(2,14,76,.07);color:var(--navy);font-weight:600;}
+  .choice-btn .letter{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;font-family:'Poppins',sans-serif;color:var(--text-mid);transition:all .18s;margin-top:1px;}
+  .choice-btn.selected .letter{background:var(--navy);color:var(--gold);}
+  .choice-btn:hover .letter{background:var(--gold);color:var(--navy);}
+  .btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.4rem;gap:1rem;}
+  .btn-prev{background:transparent;border:1.5px solid var(--border);color:var(--text-mid);font-family:'Poppins',sans-serif;font-weight:600;font-size:.85rem;padding:9px 22px;border-radius:99px;cursor:pointer;transition:all .2s;}
+  .btn-prev:hover{border-color:var(--navy);color:var(--navy);}
+  .btn-next{background:var(--navy);color:var(--gold);border:none;font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem;padding:10px 26px;border-radius:99px;cursor:pointer;transition:all .2s;}
+  .btn-next:hover{background:#0a1a6e;transform:translateY(-1px);}
+  .btn-next:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+  #result-view{display:none;animation:fadeInUp .5s ease both;}
+  .result-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:20px;padding:2.5rem 2rem;box-shadow:var(--shadow-hover);text-align:center;}
+  .res-emoji{font-size:3.2rem;margin-bottom:.9rem;}
+  .res-track-label{display:inline-block;background:var(--navy);color:var(--gold);font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.08em;padding:4px 16px;border-radius:99px;margin-bottom:.7rem;}
+  .res-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(1.2rem,3.5vw,1.75rem);color:var(--navy);margin-bottom:.7rem;}
+  .res-desc{font-size:.88rem;color:var(--text-mid);line-height:1.7;max-width:500px;margin:0 auto 1.4rem;}
+  .strands-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:1.6rem;}
+  .strand-pill{background:rgba(2,14,76,.07);color:var(--navy);font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:700;padding:4px 13px;border-radius:99px;border:1.5px solid var(--border);}
+  .score-section-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:.78rem;color:var(--text-mid);margin-bottom:.75rem;}
+  .score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:1.75rem;text-align:left;}
+  .score-item{background:var(--light-bg);border-radius:10px;padding:11px 13px;}
+  .sc-label{font-size:.72rem;color:var(--text-mid);font-weight:600;margin-bottom:5px;}
+  .sc-bar-wrap{height:5px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:5px;}
+  .sc-bar{height:100%;background:linear-gradient(90deg,var(--navy),var(--gold));border-radius:99px;}
+  .sc-val{font-family:'Poppins',sans-serif;font-weight:700;font-size:.78rem;color:var(--navy);}
+  .res-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+  .btn-retake{background:transparent;border:1.5px solid var(--navy);color:var(--navy);font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem;padding:10px 22px;border-radius:99px;cursor:pointer;transition:all .2s;}
+  .btn-retake:hover{background:var(--navy);color:var(--gold);}
+  .btn-appt{background:var(--gold);color:var(--navy);border:none;font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem;padding:10px 22px;border-radius:99px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
+  .btn-appt:hover{background:var(--gold-light);transform:translateY(-1px);}
+  footer{text-align:center;padding:1.5rem;font-size:.78rem;color:var(--text-mid);border-top:1px solid var(--border);margin-top:2rem;}
+  @media(max-width:600px){
+    nav.desktop-nav{display:none;}
+    .hamburger{display:flex;}
+    .header-inner{height:58px;}
+    main{padding-top:82px;}
+    .qr-card{flex-direction:column;text-align:center;}
+    .score-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="logo-area" href="JCA_Naviport.html">
+      <img src="JCA.png" alt="JCA Logo"/>
+      <div class="logo-text">
+        <span class="logo-school">JCSGO Christian Academy</span>
+        <span class="logo-nav">JCA Naviport</span>
+      </div>
+    </a>
+    <nav class="desktop-nav">
+      <a href="JCA_Naviport.html">HOME</a>
+      <a href="JCA_Appointment.html">APPOINTMENTS</a>
+      <a href="mailto:jcsgo@jca.edu.ph">CONTACTS</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="JCA_Naviport.html" onclick="toggleMenu()">HOME</a>
+    <a href="JCA_Appointment.html" onclick="toggleMenu()">APPOINTMENTS</a>
+    <a href="mailto:jcsgo@jca.edu.ph" onclick="toggleMenu()">CONTACTS</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <span class="hero-badge">📋 TRACK IDENTIFICATION TEST</span>
+    <h1>Find Your <span>Career Track</span></h1>
+    <p>Answer 20 questions honestly to discover which Senior High School track and career path best matches your interests, strengths, and personality.</p>
+  </div>
+
+  <div class="qr-card">
+    <div class="qr-box" id="qr-box"></div>
+    <div class="qr-info">
+      <h3>📱 Scan to open on your phone</h3>
+      <p>Share this QR code with students so they can take the test on any device. No app or login needed.</p>
+      <span class="qr-url" id="qr-url-label">Generating QR code...</span>
+    </div>
+  </div>
+
+  <div id="test-view">
+    <div class="prog-wrap">
+      <div class="prog-top">
+        <span class="prog-label">Progress</span>
+        <span class="prog-count" id="prog-count">Question 1 of 20</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:5%"></div></div>
+    </div>
+    <div class="q-card" id="q-card">
+      <span class="q-num" id="q-num">QUESTION 1</span>
+      <p class="q-text" id="q-text"></p>
+      <div class="choices" id="choices-wrap"></div>
+      <div class="btn-row">
+        <button class="btn-prev" id="btn-prev" onclick="prevQ()">← Previous</button>
+        <button class="btn-next" id="btn-next" onclick="nextQ()" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="result-view">
+    <div class="result-card">
+      <div class="res-emoji" id="res-emoji"></div>
+      <span class="res-track-label" id="res-track-label"></span>
+      <h2 class="res-title" id="res-title"></h2>
+      <p class="res-desc" id="res-desc"></p>
+      <div class="strands-list" id="res-strands"></div>
+      <div class="score-section-title">Your Score Breakdown</div>
+      <div class="score-grid" id="score-grid"></div>
+      <div class="res-actions">
+        <button class="btn-retake" onclick="retake()">↺ Retake Test</button>
+        <a class="btn-appt" href="JCA_Appointment.html">📅 Book a Counseling Session</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 JCSGO Christian Academy — JCA Naviport. Track Identification Test is for career guidance purposes only.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+window.addEventListener('load',function(){
+  var url=window.location.href;
+  document.getElementById('qr-url-label').textContent=url;
+  try{
+    new QRCode(document.getElementById('qr-box'),{text:url,width:106,height:106,colorDark:'#020E4C',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+  }catch(e){
+    document.getElementById('qr-box').innerHTML='<div style="font-size:.7rem;color:#888;padding:8px;text-align:center;">Scan URL above</div>';
+  }
+});
+
+var Qs=[
+  {q:"Which activity sounds most exciting on a Saturday morning?",c:[
+    {t:"Doing science experiments or solving math puzzles",k:"s"},
+    {t:"Planning a small business or managing a budget",k:"a"},
+    {t:"Reading books, writing stories, or debating with friends",k:"h"},
+    {t:"Volunteering in your barangay or helping organize a community event",k:"g"},
+    {t:"Tinkering with gadgets, coding, or building a website",k:"i"}
+  ]},
+  {q:"Your teacher assigns a group project. What role do you naturally take?",c:[
+    {t:"The researcher — I gather data and analyze information",k:"s"},
+    {t:"The planner — I create the budget and timeline",k:"a"},
+    {t:"The writer — I craft the narrative and present the report",k:"h"},
+    {t:"The coordinator — I make sure everyone works together well",k:"g"},
+    {t:"The tech person — I design the slides and set up the tools",k:"i"}
+  ]},
+  {q:"Which subject do you enjoy most in school?",c:[
+    {t:"Mathematics, Physics, Biology, or Chemistry",k:"s"},
+    {t:"Economics, Business Math, or Accounting",k:"a"},
+    {t:"Filipino, English, Social Studies, or Philosophy",k:"h"},
+    {t:"MAPEH, Values Education, or Community Service",k:"g"},
+    {t:"Computer/ICT, Programming, or Technology and Livelihood",k:"i"}
+  ]},
+  {q:"Imagine your ideal job in 10 years. What does it look like?",c:[
+    {t:"Working in a laboratory, hospital, or engineering firm",k:"s"},
+    {t:"Running my own business or managing a company's finances",k:"a"},
+    {t:"Working in a courtroom, school, newsroom, or government office",k:"h"},
+    {t:"Helping communities, serving in LGU, or working in uniform",k:"g"},
+    {t:"Coding apps, building websites, or working in a tech company",k:"i"}
+  ]},
+  {q:"Which hobby do you do most in your free time?",c:[
+    {t:"Watching science or nature documentaries, solving math puzzles",k:"s"},
+    {t:"Tracking stocks, trading items, or following business news",k:"a"},
+    {t:"Writing fiction, reading novels, or joining debates and theater",k:"h"},
+    {t:"Joining youth organizations, SK, student council, or volunteer work",k:"g"},
+    {t:"Playing or building games, editing videos, or making apps",k:"i"}
+  ]},
+  {q:"When facing a problem, how do you usually approach it?",c:[
+    {t:"I analyze data and test possible solutions step by step",k:"s"},
+    {t:"I calculate costs and benefits before deciding anything",k:"a"},
+    {t:"I research different perspectives and use careful reasoning",k:"h"},
+    {t:"I ask for help, build consensus, and involve others in solving it",k:"g"},
+    {t:"I Google it, watch tutorials, and build a fix using tools",k:"i"}
+  ]},
+  {q:"Which type of content do you enjoy watching online most?",c:[
+    {t:"Science experiments, space exploration, or medical shows",k:"s"},
+    {t:"Entrepreneurship stories, stock market tips, or business vlogs",k:"a"},
+    {t:"News channels, documentaries, law dramas, or debate shows",k:"h"},
+    {t:"Community programs, government affairs, or public service stories",k:"g"},
+    {t:"Tech unboxings, coding tutorials, cybersecurity content, or gaming",k:"i"}
+  ]},
+  {q:"Which college program appeals to you most?",c:[
+    {t:"BS Engineering, BS Nursing, BS Medicine, or BS Biology",k:"s"},
+    {t:"BS Accountancy, BS Business Administration, or BS Marketing",k:"a"},
+    {t:"AB Political Science, AB Communication, or AB Psychology",k:"h"},
+    {t:"BS Public Administration, BS Criminology, or BS Tourism",k:"g"},
+    {t:"BS Computer Science, BS IT, or TVL-ICT with TESDA certifications",k:"i"}
+  ]},
+  {q:"What would you most like to be remembered for in your career?",c:[
+    {t:"Discovering something new or building life-saving innovations",k:"s"},
+    {t:"Creating a successful company and generating jobs for Filipinos",k:"a"},
+    {t:"Changing laws, telling important stories, or educating people",k:"h"},
+    {t:"Serving the public and making communities safer and better",k:"g"},
+    {t:"Building technology that millions of Filipinos use every day",k:"i"}
+  ]},
+  {q:"How do you feel about working with numbers and logical analysis?",c:[
+    {t:"I love it — equations and formulas are exciting to me",k:"s"},
+    {t:"I enjoy it when it involves money, finance, or business data",k:"a"},
+    {t:"I prefer words and ideas over numbers, though I manage basic math",k:"h"},
+    {t:"I prefer working with people more than working with numbers",k:"g"},
+    {t:"I like numbers in programming, databases, and data analysis",k:"i"}
+  ]},
+  {q:"Which real-world issue interests you the most?",c:[
+    {t:"Climate change, disease outbreaks, and sustainable energy",k:"s"},
+    {t:"Inflation, economic inequality, and business opportunities in PH",k:"a"},
+    {t:"Human rights, press freedom, and education reform in PH",k:"h"},
+    {t:"Crime prevention, poverty alleviation, and local governance",k:"g"},
+    {t:"Cybercrime, digital inclusion, and the future of AI in the Philippines",k:"i"}
+  ]},
+  {q:"A company is hiring. Which job posting would you click first?",c:[
+    {t:"Laboratory Chemist — Laguna Industrial Park (₱28k–₱45k/mo)",k:"s"},
+    {t:"Junior Accountant — Makati CBD (₱25k–₱40k/mo)",k:"a"},
+    {t:"News Writer — Philippine newspaper (₱22k–₱35k/mo)",k:"h"},
+    {t:"Community Development Officer — DSWD (₱22k–₱32k/mo)",k:"g"},
+    {t:"Junior Web Developer — BGC Tech Startup (₱30k–₱50k/mo)",k:"i"}
+  ]},
+  {q:"Which best describes how you communicate with others?",c:[
+    {t:"Precise and logical — I explain things with facts and evidence",k:"s"},
+    {t:"Persuasive and confident — I can sell ideas and negotiate well",k:"a"},
+    {t:"Expressive and empathetic — I connect through stories and emotions",k:"h"},
+    {t:"Collaborative and inclusive — I listen first and build consensus",k:"g"},
+    {t:"Direct and technical — I explain how things work step by step",k:"i"}
+  ]},
+  {q:"How do you feel about doing physical fieldwork or on-site visits?",c:[
+    {t:"I love lab work, field sampling, and engineering site inspections",k:"s"},
+    {t:"I prefer office-based work but I'm fine with client meetings",k:"a"},
+    {t:"I enjoy interviews, community visits, and school field trips",k:"h"},
+    {t:"I love being out in the community — fieldwork energizes me",k:"g"},
+    {t:"I prefer working at a computer, but I can do tech setups on-site",k:"i"}
+  ]},
+  {q:"Your classmate is struggling academically. What do you do?",c:[
+    {t:"Walk them through the problem step by step with logic and data",k:"s"},
+    {t:"Help them make a practical plan and set achievable goals",k:"a"},
+    {t:"Listen carefully and offer emotional support and encouragement",k:"h"},
+    {t:"Coordinate with the teacher, guidance counselor, and their family",k:"g"},
+    {t:"Find a YouTube tutorial or app that can help them learn faster",k:"i"}
+  ]},
+  {q:"Which school club would you most likely join?",c:[
+    {t:"Science club, robotics team, or math olympiad group",k:"s"},
+    {t:"Junior Entrepreneurs, Junior Achievers, or Finance club",k:"a"},
+    {t:"Debate club, school paper, theater arts, or student government",k:"h"},
+    {t:"Red Cross Youth, ROTC, Sangguniang Kabataan, or Peer Facilitators",k:"g"},
+    {t:"ICT club, coding bootcamp, or digital arts team",k:"i"}
+  ]},
+  {q:"How do you feel about professional board or licensure examinations?",c:[
+    {t:"I'm ready — PRC licensure proves I'm a qualified professional",k:"s"},
+    {t:"I'll take the CPA board — the gold standard for business careers",k:"a"},
+    {t:"I'll take the Bar, LET, or Psychometrician exam — totally worth it",k:"h"},
+    {t:"I'll take civil service exams — they open great government career paths",k:"g"},
+    {t:"I prefer industry certifications: CompTIA, Cisco, AWS, or Google certs",k:"i"}
+  ]},
+  {q:"Which Filipino role model inspires you most?",c:[
+    {t:"A Filipino scientist, engineer, or doctor making global impact",k:"s"},
+    {t:"A successful Filipino entrepreneur like Henry Sy or Manny Villar",k:"a"},
+    {t:"A journalist, activist lawyer, or educator like Jose Rizal",k:"h"},
+    {t:"A public servant, LGU official, or police/military hero",k:"g"},
+    {t:"A Filipino tech founder, programmer, or popular digital creator",k:"i"}
+  ]},
+  {q:"Where do you see yourself working in the future?",c:[
+    {t:"A research lab, hospital, construction site, or engineering office",k:"s"},
+    {t:"A corporate office, trading floor, bank, or my own business",k:"a"},
+    {t:"A courtroom, newsroom, school, or government office",k:"h"},
+    {t:"A barangay hall, DSWD office, police station, or LGU building",k:"g"},
+    {t:"A tech startup, BPO company, or anywhere with a fast internet connection",k:"i"}
+  ]},
+  {q:"Finally — what does success look like to you?",c:[
+    {t:"Advancing science and saving lives through research and medicine",k:"s"},
+    {t:"Financial independence and building a thriving business empire",k:"a"},
+    {t:"Creating meaningful change through education, law, or media",k:"h"},
+    {t:"Serving the public faithfully and improving Filipino communities",k:"g"},
+    {t:"Building innovative tech solutions that solve real problems in PH",k:"i"}
+  ]}
+];
+
+var trackInfo={
+  s:{label:"ACADEMIC TRACK — STEM",title:"Science, Technology, Engineering & Mathematics",emoji:"🔬",
+    desc:"You have a strong inclination toward analytical thinking, scientific inquiry, and problem-solving. The STEM strand is your best fit — you thrive on data, experiments, and complex challenges. Careers in medicine, engineering, data science, architecture, and research await you.",
+    strands:["STEM Strand","BS Engineering","BS Nursing","BS Medicine","BS Biology","Data Science","BS Architecture"]},
+  a:{label:"ACADEMIC TRACK — ABM",title:"Accountancy, Business & Management",emoji:"📊",
+    desc:"You're business-minded, financially savvy, and a natural strategist. ABM aligns with your entrepreneurial spirit and love for management. You thrive in environments involving money, marketing, and organizational leadership. CPA, business manager, financial analyst, or entrepreneur are excellent career fits.",
+    strands:["ABM Strand","BS Accountancy","BS Business Admin","BS Marketing","BS Finance","Real Estate Management"]},
+  h:{label:"ACADEMIC TRACK — HUMSS",title:"Humanities & Social Sciences",emoji:"🗣️",
+    desc:"You are empathetic, expressive, and deeply curious about human society. HUMSS is your calling — you excel in communication, critical thinking, and understanding people and ideas. Lawyer, journalist, teacher, psychologist, and diplomat are career paths made for you.",
+    strands:["HUMSS Strand","AB Communication","AB Political Science","BS Psychology","AB Education","Juris Doctor"]},
+  g:{label:"ACADEMIC TRACK — GAS",title:"General Academic Strand",emoji:"🏛️",
+    desc:"You're a people-person with a genuine desire to serve your community. GAS reflects your broad interests and strong civic orientation. You work well with diverse groups in public-service environments. Public administration, law enforcement, social work, tourism, and community development suit you well.",
+    strands:["GAS Strand","BS Public Admin","BS Criminology","BS Tourism","BS Social Work","Civil Service"]},
+  i:{label:"TVL-ICT TRACK",title:"Technical-Vocational-Livelihood (ICT)",emoji:"💻",
+    desc:"You are tech-savvy, hands-on, and a true digital native. TVL-ICT is your perfect path — you love building things, solving technical problems, and working with cutting-edge tools. The Philippines' booming IT-BPM industry offers outstanding career opportunities as a software developer, cybersecurity analyst, or web developer.",
+    strands:["TVL-ICT Strand","BS Computer Science","BS Information Technology","TESDA NC II/III","CompTIA A+ / CCNA","Google / AWS Certs"]}
+};
+
+var trackLabels={s:'STEM',a:'ABM',h:'HUMSS',g:'GAS',i:'TVL-ICT'};
+var answers=new Array(Qs.length).fill(null);
+var cur=0;
+
+function render(){
+  var q=Qs[cur];
+  document.getElementById('q-num').textContent='QUESTION '+(cur+1);
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prog-count').textContent='Question '+(cur+1)+' of '+Qs.length;
+  document.getElementById('prog-fill').style.width=(((cur+1)/Qs.length)*100)+'%';
+  var wrap=document.getElementById('choices-wrap');
+  wrap.innerHTML='';
+  ['A','B','C','D','E'].forEach(function(L,i){
+    var btn=document.createElement('button');
+    btn.className='choice-btn'+(answers[cur]===i?' selected':'');
+    btn.innerHTML='<span class="letter">'+L+'</span><span>'+q.c[i].t+'</span>';
+    btn.onclick=function(){pick(i);};
+    wrap.appendChild(btn);
+  });
+  document.getElementById('btn-prev').style.visibility=cur===0?'hidden':'visible';
+  document.getElementById('btn-next').disabled=answers[cur]===null;
+  document.getElementById('btn-next').textContent=cur===Qs.length-1?'See My Results ✓':'Next →';
+  var card=document.getElementById('q-card');
+  card.style.animation='none';card.offsetHeight;card.style.animation='fadeInUp .35s ease both';
+}
+
+function pick(i){
+  answers[cur]=i;
+  document.querySelectorAll('.choice-btn').forEach(function(b,idx){b.classList.toggle('selected',idx===i);});
+  document.getElementById('btn-next').disabled=false;
+}
+
+function nextQ(){
+  if(answers[cur]===null)return;
+  if(cur<Qs.length-1){cur++;render();}
+  else showResult();
+}
+
+function prevQ(){if(cur>0){cur--;render();}}
+
+function showResult(){
+  var sc={s:0,a:0,h:0,g:0,i:0};
+  Qs.forEach(function(q,idx){if(answers[idx]!==null)sc[q.c[answers[idx]].k]++;});
+  var winner=Object.keys(sc).reduce(function(a,b){return sc[a]>=sc[b]?a:b;});
+  var info=trackInfo[winner];
+  document.getElementById('res-emoji').textContent=info.emoji;
+  document.getElementById('res-track-label').textContent=info.label;
+  document.getElementById('res-title').textContent=info.title;
+  document.getElementById('res-desc').textContent=info.desc;
+  var sl=document.getElementById('res-strands');sl.innerHTML='';
+  info.strands.forEach(function(s){var p=document.createElement('span');p.className='strand-pill';p.textContent=s;sl.appendChild(p);});
+  var sg=document.getElementById('score-grid');sg.innerHTML='';
+  Object.keys(sc).forEach(function(k){
+    var pct=Math.round((sc[k]/Qs.length)*100);
+    var d=document.createElement('div');d.className='score-item';
+    d.innerHTML='<div class="sc-label">'+trackLabels[k]+'</div><div class="sc-bar-wrap"><div class="sc-bar" style="width:'+pct+'%"></div></div><div class="sc-val">'+sc[k]+'/'+Qs.length+' ('+pct+'%)</div>';
+    sg.appendChild(d);
+  });
+  document.getElementById('test-view').style.display='none';
+  document.getElementById('result-view').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function retake(){
+  answers=new Array(Qs.length).fill(null);cur=0;
+  document.getElementById('result-view').style.display='none';
+  document.getElementById('test-view').style.display='block';
+  render();window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleMenu(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobile-nav').classList.toggle('open');
+}
+
+render();
+</script>
+</body>
+</html>
