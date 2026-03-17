@@ -1,396 +1,1466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>In-Depth Career Profile | Naviport</title>
-    <style>
-        
-        @keyframes reveal {
-            from { 
-                opacity: 0; 
-                transform: translateY(10px);; 
-            }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>In-Depth Career Profile | JCA Naviport</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
+  : root {
+    --navy: #020E4C;
+    --gold: #FFB11A;
+    --gold-light: #FFD06A;
+    --white: #ffffff;
+    --light-bg: #F4F6FB;
+    --card-bg: #ffffff;
+    --text-dark: #1a1a2e;
+    --text-mid: #444466;
+    --border: #e0e4f0;
+    --shadow: 0 4px 24px rgba(2,14,76,0.10);
+    --shadow-hover: 0 8px 36px rgba(2,14,76,0.18);
+  }
 
-        .animate-fade {
-            opacity: 0; 
-            animation: reveal 0.8s ease-out forwards;
-            will-change: transform, opacity;
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
 
-        header { 
-            animation-delay: 0.1s; 
-        }
+  /* ===== HEADER ===== */
+  header {
+    background: var(--navy);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-area img {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+    background: var(--gold);
+  }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-school {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .logo-nav {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  nav.desktop-nav { display: flex; gap: 0; }
+  nav.desktop-nav a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0 1rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    transition: color 0.2s, background 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  nav.desktop-nav a:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    background: rgba(255,255,255,0.05);
+  }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-nav {
+    display: none;
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .mobile-nav.open { display: block; }
+  .mobile-nav a {
+    display: block;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: color 0.2s, padding 0.2s;
+  }
+  .mobile-nav a:hover { color: var(--gold); padding-left: 2rem; }
 
-        .hero-section h1 { 
-            animation-delay: 0.3s; 
-        }
+  /* ===== MAIN ===== */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 1.5rem 3rem;
+  }
 
-        .hero-section p { 
-            animation-delay: 0.5s; 
-        }
+  /* ===== HOME VIEW ===== */
+  #home-view { animation: fadeInUp 0.5s ease both; }
+  .hero-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    color: var(--navy);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .hero-heading span { color: var(--gold); }
+  .hero-sub {
+    text-align: center;
+    color: var(--text-mid);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .track-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .track-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 1.75rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.28s cubic-bezier(.4,0,.2,1);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .track-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--navy) 0%, #0a1a6e 100%);
+    opacity: 0;
+    transition: opacity 0.28s;
+    z-index: 0;
+  }
+  .track-card:hover::before, .track-card:focus::before { opacity: 1; }
+  .track-card:hover, .track-card:focus {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+    outline: none;
+  }
+  .track-card:hover .track-icon,
+  .track-card:focus .track-icon { background: var(--gold); color: var(--navy); }
+  .track-card:hover .track-title,
+  .track-card:focus .track-title,
+  .track-card:hover .track-desc,
+  .track-card:focus .track-desc { color: var(--white); }
+  .track-card > * { position: relative; z-index: 1; }
+  .track-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 1.1rem;
+    transition: all 0.28s;
+  }
+  .track-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    transition: color 0.28s;
+  }
+  .track-desc {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    transition: color 0.28s;
+  }
+  .track-cta {
+    display: inline-block;
+    margin-top: 1.1rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 6px 18px;
+    border-radius: 99px;
+    letter-spacing: 0.04em;
+  }
 
-        .hero-btns { 
-            animation-delay: 0.7s; 
-        }
+  /* ===== PROFESSION VIEW ===== */
+  .prof-section { display: none; }
+  .prof-section.active {
+    display: block;
+    animation: fadeInUp 0.45s ease both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-        .services-bar { 
-            animation-delay: 0.9s; 
-        }
+  .section-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #0a1a6e 100%);
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .section-header-text h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    color: var(--white);
+  }
+  .section-header-text p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  .back-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 10px 22px;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+  }
+  .back-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
 
-        * {
-            font-family: Arial, sans-serif;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  /* Strand group */
+  .strand-group { margin-bottom: 2.5rem; }
+  .strand-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--navy);
+    background: linear-gradient(90deg, rgba(2,14,76,0.08) 0%, transparent 100%);
+    border-left: 4px solid var(--gold);
+    padding: 0.65rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1rem;
+  }
 
-        body {
-            background-color: #FFFFFF; 
-            overflow-x: hidden;
-        }
+  .careers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.25rem;
+  }
 
-        header {
-            width: 100%;
-            height: 85px;
-            background-color: #020E4C;
-            position: fixed; 
-            top: 0;
-            left: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 3%;
-            z-index: 100;
-        }
+  /* Career Box */
+  .career-box {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 1.4rem 1.5rem;
+    transition: all 0.25s;
+    box-shadow: 0 2px 12px rgba(2,14,76,0.06);
+  }
+  .career-box:hover {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+  .career-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    line-height: 1.3;
+  }
+  .strand-label {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 99px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .info-section {
+    margin-bottom: 0.7rem;
+    font-size: 0.83rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+  }
+  .info-section b {
+    color: var(--navy);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .info-section p { color: var(--text-mid); }
+  .source {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .source .txt {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    margin-bottom: 0.45rem;
+    font-weight: 600;
+  }
+  .source .btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .source .btns a {
+    display: inline-block;
+    background: var(--light-bg);
+    color: var(--navy);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .source .btns a:hover {
+    background: var(--navy);
+    color: var(--gold);
+    border-color: var(--navy);
+  }
 
-        .brand-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            user-select: none;
-            text-decoration: none;
-        }
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
 
-        .brand-container img {
-            height: 60px;
-            width: 60px;
-            object-fit: contain;
-        }
-
-        .title-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .academy-name {
-            color: #ffc004;
-            font-size: 14px;
-            border-bottom: 1px solid #FFB11A;
-            padding-bottom: 2px;
-            white-space: nowrap;
-        }
-
-        .naviport-name {
-            color: #FFB11A;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 3px;
-        }
-
-        .right-nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .deactivated-location {
-            color: #FFB11A;
-            border: solid 2px #FFB11A;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-size: 14px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            background-color: transparent;
-            display: inline-block;
-        }
-
-        .deactivated-location:hover {
-            background-color: #FFB11A;
-            border: solid 2px #020E4C;
-            color: white;
-            box-shadow: 4px 4px 0px #FFB11A, -4px 4px 0px #FFB11A, 4px -4px 0px #FFB11A, -4px -4px 0px #FFB11A;
-            transform: translateY(-2px);
-        }
-
-        .mainbuttons {
-            color: #Ffffff;
-            border: solid 2px #FFB11A;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-size: 16px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            background-color: transparent;
-            display: inline-block;
-        }
-
-        .mainbuttons:hover {
-            background-color: #FFB11A;
-            border: solid 2px #ffffff;
-            color: white;
-            box-shadow: 4px 4px 0px #FFB11A, -4px 4px 0px #FFB11A, 4px -4px 0px #FFB11A, -4px -4px 0px #FFB11A;
-            transform: translateY(-2px);
-        }
-
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 101;
-            padding: 5px;
-        }
-
-        .hamburger div {
-            width: 28px;
-            height: 3px;
-            background-color: #FFB11A;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
-
-        .hamburger.toggle .line1 { 
-            transform: rotate(-45deg) translate(-5px, 6px); 
-        }
-
-        .hamburger.toggle .line2 { 
-            opacity: 0; 
-        }
-
-        .hamburger.toggle .line3 { 
-            transform: rotate(45deg) translate(-6px, -7px); 
-        }
-
-        .nav-links {
-            position: fixed;
-            top: 0;
-            right: 0; 
-            width: 280px;
-            height: 100vh;
-            background-color: #020E4C;
-            display: flex;
-            flex-direction: column;
-            padding-top: 100px;
-            z-index: 99;
-            box-shadow: -10px 0 20px rgba(0,0,0,0.4);
-            transform: translateX(100%);
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .nav-links.open { 
-            transform: translateX(0); 
-        }
-
-        .nav-links .categ {
-            color: #FFB11A;
-            padding: 20px 40px;
-            font-size: 18px;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        .nav-links .categ:hover {
-            background-color: #FFB11A;
-            color: #020E4C;
-            padding-left: 60px;
-        }
-
-        .mobile-auth {
-            display: none;
-            padding: 0 40px 20px 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-auth .deactivated-location {
-            display: block;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        main {
-            margin-top: 120px;
-            padding: 20px 5%;
-            min-height: calc(100vh - 160px);
-        }
-
-        .career-title {
-            color: #020E4C;
-            font-size: 32px;
-            margin-bottom: 40px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .track-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .track-card {
-            background-color: #020E4C;
-            border: 2px solid #FFB11A;
-            border-radius: 15px;
-            padding: 25px;
-            transition: 0.3s ease;
-        }
-
-        .track-card:hover {
-            transform: translateY(-5px);
-            background-color: #FFB11A;
-            color: #ffffff;
-            border: solid 3px #ffffff;
-            box-shadow: 6px 6px 0px #FFB11A, -6px 6px 0px #FFB11A, 6px -6px 0px #FFB11A, -6px -6px 0px #FFB11A;
-        }
-
-        .track-card:hover h2 {
-            color: #ffffff;
-            border-bottom: 2px solid #FFffff;
-        }
-
-        .track-card h2 {
-            color: #FFB11A;
-            font-size: 22px;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #FFB11A;
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-
-        .track-card p {
-            color: #FFFFFF;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        @media screen and (max-width: 768px) {
-
-            .right-nav .deactivated-location { 
-                display: none; 
-            }
-
-            .mobile-auth { 
-                display: block; 
-            }
-
-            .academy-name { 
-                font-size: 12px; 
-            }
-
-            .naviport-name { 
-                font-size: 14px; 
-            }
-
-            .brand-container { 
-                gap: 10px; 
-            }
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #01082d;
-            color: #666;
-            font-size: 12px;
-        }
-
-    </style>
+  @media (max-width: 640px) {
+    nav.desktop-nav { display: none; }
+    .hamburger { display: flex; }
+    .header-inner { height: 58px; }
+    main { padding-top: 80px; }
+    .careers-grid { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
 </head>
 <body>
 
-    <header id="main-header" class="animate-fade">
-        <a href="Home.html" class="brand-container">
-            <img src="JCA.png" alt="JCA Logo">
-            <div class="title-group">
-                <span class="academy-name">JCSGO Christian Academy</span>
-                <span class="naviport-name">JCA Naviport</span>
-            </div>
-        </a>
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo-area" href="#" onclick="goHome(event)">
+      <img src="JCA.png" alt="JCA Logo"/>
+      <div class="logo-text">
+        <span class="logo-school">JCSGO Christian Academy</span>
+        <span class="logo-nav">JCA Naviport</span>
+      </div>
+    </a>
+    <nav class="desktop-nav">
+      <a href="#" onclick="goHome(event)">HOME</a>
+      <a href="mailto:jcsgo@jca.edu.ph">CONTACTS</a>
+      <a href="#about">ABOUT US</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#" onclick="goHome(event);toggleMenu()">HOME</a>
+    <a href="mailto:jcsgo@jca.edu.ph" onclick="toggleMenu()">CONTACTS</a>
+    <a href="#about" onclick="toggleMenu()">ABOUT US</a>
+  </nav>
+</header>
 
-        <div class="right-nav">
-            <a href="#" class="deactivated-location">Log In</a>
-            <a href="#" class="deactivated-location">Sign Up</a>
+<main>
 
-            <button class="hamburger" id="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </button>
+<!-- HOME VIEW -->
+<div id="home-view">
+  <h1 class="hero-heading">Career Professions in the <span>Philippines</span></h1>
+  <p class="hero-sub">Explore in-depth career profiles to help guide your future. Choose your track below.</p>
+  <div class="track-grid">
+
+    <div class="track-card"
+         tabindex="0"
+         role="button"
+         aria-label="View Academic Track professions"
+         onclick="showTrack('academic')"
+         onkeydown="handleKey(event,'academic')">
+      <div class="track-icon">🎓</div>
+      <div class="track-title">Academic Track</div>
+      <div class="track-desc">Professional & degree-based careers for STEM, ABM, HUMSS, and GAS strand graduates pursuing higher education in the Philippines.</div>
+      <span class="track-cta">Explore Careers →</span>
+    </div>
+
+    <div class="track-card"
+         tabindex="0"
+         role="button"
+         aria-label="View Technical Professional Track professions"
+         onclick="showTrack('technical')"
+         onkeydown="handleKey(event,'technical')">
+      <div class="track-icon">💻</div>
+      <div class="track-title">Technical Professional Track</div>
+      <div class="track-desc">Skilled & technical careers under TVL-ICT for students pursuing TESDA certifications, tech jobs, and digital economy roles in the Philippines.</div>
+      <span class="track-cta">Explore Careers →</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================
+     ACADEMIC TRACK
+     ============================================================ -->
+<div id="academic-section" class="prof-section">
+  <div class="section-header">
+    <div class="section-header-text">
+      <h2>🎓 Academic Track</h2>
+      <p>Professional & Degree-based Careers — STEM, ABM, HUMSS, GAS</p>
+    </div>
+    <button class="back-btn" onclick="goHome()">← Back to Tracks</button>
+  </div>
+
+  <!-- STEM -->
+  <div class="strand-group">
+    <div class="strand-heading">📐 STEM Strand — Science, Technology, Engineering & Mathematics</div>
+    <div class="careers-grid">
+
+      <div class="career-box">
+        <div class="career-title">Engineer (General / Civil / Mechanical / Electrical) <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>Engineers are among the most in-demand professionals in the Philippines, driving infrastructure, energy, and manufacturing projects. Civil engineers work on roads, bridges, and buildings; electrical and mechanical engineers support manufacturing hubs in Cavite, Laguna, and Batangas.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱25,000–₱150,000+/month. Entry ≈ ₱25–35k; Mid ≈ ₱45–80k; Senior/managerial ≈ ₱90k+. Multinational firms and DPWH contractors pay higher. Metro Manila/private sector pays a premium.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Engineering (5-year program); must pass the PRC Licensure Examination for Engineers. Board exam required for professional practice. Continuing Professional Development (CPD) credits needed for renewal.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Reviewing blueprints and technical drawings; conducting site inspections and safety checks; coordinating with contractors and suppliers; preparing engineering reports and cost estimates; attending project status meetings; using AutoCAD or BIM software.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/engineer/salary" target="_blank" rel="noopener">JobStreet PH – Engineer Salary</a>
+            <a href="https://www.prc.gov.ph/engineering" target="_blank" rel="noopener">PRC – Engineering Licensure</a>
+            <a href="https://www.dpwh.gov.ph/" target="_blank" rel="noopener">DPWH – Public Works</a>
+            <a href="https://ph.talent.com/salary?job=engineer" target="_blank" rel="noopener">Talent.com PH – Engineer Pay</a>
+          </div>
         </div>
+      </div>
 
-        <nav class="nav-links" id="menu">
-            <div class="mobile-auth">
-                <a href="#" class="deactivated-location">Log In</a>
-                <a href="#" class="deactivated-location">Sign Up</a>
-            </div>
-            <a href="Home.html" class="categ">HOME</a>
-            <a href="#" class="categ">CONTACTS</a>
-            <a href="#" class="categ">ABOUT US</a>
-        </nav>
-    </header>
-
-    <main class="animate-fade">
-        <h1 class="career-title">Career Professions in the Philippines</h1>
-        
-        <div class="track-container">
-            <div class="track-card">
-                <h2>Academic Track</h2>
-                <p>Professional & Degree-based Careers</p>
-            </div>
-
-            <div class="track-card">
-                <h2>Technical Professional Track</h2>
-                <p>Skilled & Technical Careers</p>
-            </div>
+      <div class="career-box">
+        <div class="career-title">Doctor / Physician <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>Physicians are critical to the Philippine healthcare system, with demand across public hospitals (DOH), private hospitals, and OFW-bound medical professionals. Specializations in surgery, internal medicine, and family medicine are most sought after. The Philippines is also a top supplier of doctors to the US and UK.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱40,000–₱250,000+/month. Government/public hospital residents ≈ ₱40–60k; Private practice/specialists ≈ ₱80–200k+; Abroad-bound Filipino doctors can earn PHP equivalent of ₱200k+/month.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Pre-Med (4 years) + Doctor of Medicine (4 years) + 1-year internship + PRC Medical Board Exam (Physician Licensure Examination). Specialization requires residency (3–5 years) + fellowship.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting patient consultations and physical examinations; reviewing lab results and diagnostic imaging; prescribing treatments and medications; documenting medical records (EMR systems); collaborating with nurses and allied health staff; attending grand rounds and case conferences.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/doctor/salary" target="_blank" rel="noopener">JobStreet PH – Doctor Salary</a>
+            <a href="https://www.prc.gov.ph/medicine" target="_blank" rel="noopener">PRC – Medicine Licensure</a>
+            <a href="https://www.doh.gov.ph/human-resources-for-health" target="_blank" rel="noopener">DOH – Health Careers</a>
+            <a href="https://ph.indeed.com/q-Physician-jobs.html" target="_blank" rel="noopener">Indeed PH – Physician Jobs</a>
+          </div>
         </div>
-    </main>
+      </div>
 
-    <footer>
-        &copy; 2026 JCSGO Christian Academy. All rights reserved.
-    </footer>
+      <div class="career-box">
+        <div class="career-title">Architect <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>Architects design residential, commercial, and government structures across the Philippines. With the Build, Build, Build program's legacy and ongoing infrastructure push, architects in urban planning, sustainable design, and heritage conservation are increasingly valued. BGC and Makati are key job centers.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱22,000–₱120,000+/month. Entry ≈ ₱22–35k; Mid ≈ ₱45–70k; Senior/principal ≈ ₱80–120k+. Own practice earnings can exceed ₱200k depending on project size.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Architecture (5 years); Architect Licensure Examination (ALE) administered by PRC; Optional LEED Green Associate for sustainable design. NCCA accreditation for heritage work.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Creating and presenting architectural designs using AutoCAD, SketchUp, or Revit; meeting with clients to understand requirements; coordinating with engineers and contractors; reviewing construction progress; preparing permit documents for LGUs; conducting site visits.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/architect/salary" target="_blank" rel="noopener">JobStreet PH – Architect Salary</a>
+            <a href="https://www.prc.gov.ph/architecture" target="_blank" rel="noopener">PRC – Architecture Licensure</a>
+            <a href="https://www.uap.com.ph/" target="_blank" rel="noopener">UAP – United Architects PH</a>
+            <a href="https://ph.talent.com/salary?job=architect" target="_blank" rel="noopener">Talent.com PH – Architect Pay</a>
+          </div>
+        </div>
+      </div>
 
-    <script>
-        const burger = document.getElementById('burger');
-        const menu = document.getElementById('menu');
+      <div class="career-box">
+        <div class="career-title">Data Analyst / Data Scientist <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>One of the fastest-growing roles in the Philippines, data analysts and scientists work in BPO firms, fintech companies (GCash, Maya), retail giants (SM, Puregold), and government agencies (PSA, BSP). They turn raw data into actionable business insights using tools like Python, SQL, and Tableau.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱30,000–₱180,000+/month. Entry analyst ≈ ₱30–45k; Mid-level ≈ ₱55–90k; Senior data scientist/AI engineer ≈ ₱100–180k+. Fintech and MNC roles pay the highest.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Statistics, BS Mathematics, BS Computer Science, or BS Information Technology. Certifications: Google Data Analytics Certificate, AWS Certified Data Analytics, Microsoft Power BI certification, Coursera/IBM Data Science Professional Certificate.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Cleaning and preprocessing datasets using Python or R; building dashboards in Power BI or Tableau; running statistical analyses; collaborating with product or marketing teams; presenting findings to management; developing and maintaining machine learning models.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/data-analyst/salary" target="_blank" rel="noopener">JobStreet PH – Data Analyst Salary</a>
+            <a href="https://www.psa.gov.ph/employment/content/statistics-career" target="_blank" rel="noopener">PSA – Statistics Careers</a>
+            <a href="https://www.nodeflair.com/salaries/philippines" target="_blank" rel="noopener">NodeFlair – Tech Salaries PH</a>
+            <a href="https://ph.indeed.com/q-Data-Scientist-jobs.html" target="_blank" rel="noopener">Indeed PH – Data Scientist Jobs</a>
+          </div>
+        </div>
+      </div>
 
-        burger.addEventListener('click', () => {
-            menu.classList.toggle('open');
-            burger.classList.toggle('toggle');
-        });
+      <div class="career-box">
+        <div class="career-title">Commercial Pilot <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>With Philippine Airlines, Cebu Pacific, and AirAsia Philippines expanding post-pandemic, demand for commercial pilots is rebounding. Filipino pilots are also sought by Middle Eastern and Asian carriers. Flight schools in Clark, Subic, and Batangas offer CAAP-approved training programs.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱80,000–₱350,000+/month. First officer ≈ ₱80–150k; Captain (narrowbody) ≈ ₱180–280k; Senior captain/widebody ≈ ₱300k+. International carriers pay significantly more in USD/AED.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Aviation Technology or BS Aeronautical Engineering; Commercial Pilot License (CPL) and Airline Transport Pilot License (ATPL) from CAAP (Civil Aviation Authority of the Philippines); type rating for specific aircraft.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Pre-flight inspection and weather briefing; filing flight plans with ATC (CAAP); cockpit checks and instrument calibration; communicating with air traffic control; monitoring fuel consumption and flight systems; completing post-flight reports and logbooks.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/pilot/salary" target="_blank" rel="noopener">JobStreet PH – Pilot Salary</a>
+            <a href="https://caap.gov.ph/personnel-licensing/" target="_blank" rel="noopener">CAAP – Pilot Licensing</a>
+            <a href="https://www.philippineairlines.com/en/ph/home/aboutus/careers" target="_blank" rel="noopener">PAL Careers</a>
+            <a href="ph.talent.com/salary?job=commercial+pilot" target="_blank" rel="noopener">Talent.com PH – Pilot Pay</a>
+          </div>
+        </div>
+      </div>
 
-        document.querySelectorAll('.categ').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('open');
-                burger.classList.remove('toggle');
-            });
-        });
-    </script>
+      <div class="career-box">
+        <div class="career-title">Nurse <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>The Philippines is the world's top supplier of nurses, with hundreds of thousands deployed globally. Locally, nurses work in DOH hospitals, private hospitals, clinics, and schools. The NLE (Nurse Licensure Exam) is one of the most-taken PRC board exams annually. High demand locally and abroad.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱80,000+/month locally. Government hospital nurse ≈ ₱18–30k; Private hospital ≈ ₱25–45k; Senior/head nurse ≈ ₱45–80k. Abroad (US/UK/Canada/Middle East) ≈ ₱150–300k+ equivalent/month.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Nursing (4 years); Nurse Licensure Examination (NLE) by PRC; for US deployment: NCLEX-RN; for UK: NMC registration. IELTS/OET required for most international positions.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting patient assessments and vital signs monitoring; administering medications and IV therapy; coordinating with doctors on patient care plans; documenting patient records in hospital information systems; performing wound care and post-operative monitoring; educating patients and families.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/nurse/salary" target="_blank" rel="noopener">JobStreet PH – Nurse Salary</a>
+            <a href="https://www.prc.gov.ph/nursing" target="_blank" rel="noopener">PRC – Nursing Licensure</a>
+            <a href="https://www.doh.gov.ph/" target="_blank" rel="noopener">DOH – Health Sector Careers</a>
+            <a href="https://ph.indeed.com/q-Registered-Nurse-jobs.html" target="_blank" rel="noopener">Indeed PH – RN Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Pharmacist <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>Pharmacists work in drugstores (Mercury Drug, Watsons, Rose Pharmacy), hospital pharmacies, pharmaceutical companies, and regulatory bodies like the FDA-Philippines. Clinical pharmacists in hospitals are increasingly valued for medication management and patient safety roles.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱22,000–₱90,000+/month. Entry/retail pharmacist ≈ ₱22–35k; Hospital pharmacist ≈ ₱30–50k; Industrial/regulatory ≈ ₱50–90k+. Abroad (US/UK/Australia): ₱200k+ equivalent monthly.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Pharmacy (5 years); Pharmacist Licensure Examination by PRC; for hospital and industrial roles: Masters in Clinical Pharmacy or Pharmaceutical Sciences is advantageous.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Dispensing prescription medications and verifying prescriptions; counseling patients on drug interactions and proper use; managing pharmacy inventory and drug expiry; conducting medication reconciliation in hospital settings; coordinating with physicians on therapeutic drug levels; compliance with FDA-PH regulations.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/pharmacist/salary" target="_blank" rel="noopener">JobStreet PH – Pharmacist Salary</a>
+            <a href="https://www.prc.gov.ph/pharmacy" target="_blank" rel="noopener">PRC – Pharmacy Licensure</a>
+            <a href="https://www.fda.gov.ph/" target="_blank" rel="noopener">FDA Philippines</a>
+            <a href="https://ph.indeed.com/q-Pharmacist-jobs.html" target="_blank" rel="noopener">Indeed PH – Pharmacist Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Chemist <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>Chemists in the Philippines work in food and beverage manufacturing, pharmaceutical companies, environmental laboratories, petrochemicals, and government agencies like DOST and DENR. Quality control and research roles are most common in industrial settings in Batangas, Laguna, and Metro Manila.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱20,000–₱90,000+/month. Entry laboratory chemist ≈ ₱20–30k; QC/QA chemist ≈ ₱30–55k; Senior research chemist ≈ ₱60–90k+. MNC manufacturing firms pay higher.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Chemistry (4–5 years); Chemist Licensure Examination by PRC (for Registered Chemist title). Specializations in food science, analytical chemistry, or environmental chemistry preferred for industrial roles.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting laboratory analyses and tests on raw materials and finished products; maintaining laboratory equipment and calibration records; preparing technical reports and COA (Certificates of Analysis); ensuring compliance with GMP and ISO standards; collaborating with R&D teams; handling and disposing of chemicals safely per DENR regulations.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/chemist/salary" target="_blank" rel="noopener">JobStreet PH – Chemist Salary</a>
+            <a href="https://www.prc.gov.ph/chemistry" target="_blank" rel="noopener">PRC – Chemistry Licensure</a>
+            <a href="https://www.dost.gov.ph/" target="_blank" rel="noopener">DOST – Science Careers</a>
+            <a href="https://ph.talent.com/salary?job=chemist" target="_blank" rel="noopener">Talent.com PH – Chemist Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Statistician <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>Statisticians work in the Philippine Statistics Authority (PSA), Bangko Sentral ng Pilipinas, NEDA, insurance companies, research firms, and academe. The demand for statistical expertise is growing with the rise of big data, economic planning, and public health surveillance (PhilSys, National ID).</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱22,000–₱100,000+/month. Government statistician (PSA/BSP) ≈ ₱25–55k; Private sector/research ≈ ₱35–80k; Senior statistician/consultant ≈ ₱80–100k+.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Statistics (4 years); Statistician Licensure Examination by PRC. For advanced roles: MS Statistics or MS Applied Statistics. Knowledge of R, Python, SAS, and SPSS is essential.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Designing surveys and sampling methodologies; collecting, encoding, and validating data; running inferential statistical analyses; preparing reports for government agencies or corporate clients; developing forecasting models; presenting findings to stakeholders; ensuring data integrity and confidentiality.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/statistician/salary" target="_blank" rel="noopener">JobStreet PH – Statistician Salary</a>
+            <a href="https://www.prc.gov.ph/statistics" target="_blank" rel="noopener">PRC – Statistics Licensure</a>
+            <a href="https://psa.gov.ph/" target="_blank" rel="noopener">PSA Philippines</a>
+            <a href="https://ph.indeed.com/q-Statistician-jobs.html" target="_blank" rel="noopener">Indeed PH – Statistician Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Biologist / Environmental Scientist <span class="strand-label">STEM</span></div>
+        <div class="info-section"><b>Description:</b><p>Biologists and environmental scientists in the Philippines work in DENR, DOST, academic institutions (UP Diliman, De La Salle), pharmaceutical R&D, and environmental consultancy firms. Marine biology is particularly relevant given the Philippines' rich coastal biodiversity. Environmental impact assessments (EIA) are in constant demand for infrastructure projects.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱20,000–₱80,000+/month. Entry research assistant ≈ ₱20–30k; Environmental consultant ≈ ₱40–65k; Senior scientist/EIA specialist ≈ ₱65–80k+. NGO and international org roles can offer higher packages.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Biology, BS Environmental Science, or BS Marine Biology (4–5 years); MS or PhD for research and academic roles. DENR-accredited Environmental Planner (EnP) license from PRC for EIA work. PAWB and BFAR may require specific accreditations.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting field surveys and biodiversity assessments; collecting environmental samples for lab analysis; preparing EIA reports for DENR submission; monitoring pollution levels in air, water, and soil; coordinating with LGUs on environmental programs; presenting research findings at symposiums.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/biologist/salary" target="_blank" rel="noopener">JobStreet PH – Biologist Salary</a>
+            <a href="https://www.denr.gov.ph/" target="_blank" rel="noopener">DENR – Environment Careers</a>
+            <a href="https://www.dost.gov.ph/careers" target="_blank" rel="noopener">DOST – Research Careers</a>
+            <a href="https://ph.indeed.com/q-Environmental-Scientist-jobs.html" target="_blank" rel="noopener">Indeed PH – Env. Scientist Jobs</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /careers-grid STEM -->
+  </div><!-- /strand-group STEM -->
+
+  <!-- ABM -->
+  <div class="strand-group">
+    <div class="strand-heading">📊 ABM Strand — Accountancy, Business & Management</div>
+    <div class="careers-grid">
+
+      <div class="career-box">
+        <div class="career-title">Accountant / CPA <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>CPAs are among the most employable professionals in the Philippines. They work in the Big 4 accounting firms (Deloitte, PwC, EY, KPMG), corporations, BIR, COA, SEC, and private businesses. Corporate finance, audit, and tax advisory roles are particularly in demand in Metro Manila's business districts.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱25,000–₱200,000+/month. Entry CPA/auditor ≈ ₱25–40k; Mid-level accounting manager ≈ ₱55–100k; CFO/VP Finance ≈ ₱150–250k+. Big 4 firms and banks pay premium rates.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Accountancy (4–5 years); Certified Public Accountant (CPA) Licensure Examination by PRC. Optional: Certified Management Accountant (CMA), ACCA, or CFA for advanced finance roles.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Preparing financial statements (balance sheet, income statement, cash flow); reconciling accounts and ledgers; filing BIR tax returns (VAT, income tax, withholding tax); conducting internal or external audits; advising on cost optimization; using SAP, QuickBooks, or local accounting software.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/accountant/salary" target="_blank" rel="noopener">JobStreet PH – Accountant Salary</a>
+            <a href="https://www.prc.gov.ph/accountancy" target="_blank" rel="noopener">PRC – CPA Licensure</a>
+            <a href="https://www.bir.gov.ph/" target="_blank" rel="noopener">BIR Philippines</a>
+            <a href="https://ph.talent.com/salary?job=accountant" target="_blank" rel="noopener">Talent.com PH – Accountant Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Business Manager / Operations Manager <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>Business and operations managers oversee day-to-day company functions across retail, manufacturing, BPO, hospitality, and logistics sectors in the Philippines. Conglomerates like Ayala, SM, JG Summit, and San Miguel Corporation employ thousands of managers at various levels.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱35,000–₱200,000+/month. Entry operations officer ≈ ₱35–55k; Mid-level manager ≈ ₱60–100k; Senior/VP operations ≈ ₱120–200k+. Conglomerate MNC roles pay the highest.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Business Administration, BS Management, or related field; MBA (Master of Business Administration) for senior roles. PMP (Project Management Professional) certification is a valued add-on. No licensure exam required but professional certifications are helpful.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Setting departmental KPIs and monitoring performance; leading team meetings and resolving operational bottlenecks; coordinating with finance, HR, and supply chain; reviewing P&L statements; implementing process improvements (Lean/Six Sigma); reporting to senior leadership on business metrics.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/operations-manager/salary" target="_blank" rel="noopener">JobStreet PH – Operations Manager</a>
+            <a href="https://www.sec.gov.ph/" target="_blank" rel="noopener">SEC Philippines – Business</a>
+            <a href="https://dti.gov.ph/" target="_blank" rel="noopener">DTI – Business Sector</a>
+            <a href="https://ph.indeed.com/q-Business-Manager-jobs.html" target="_blank" rel="noopener">Indeed PH – Business Manager Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Marketing Specialist / Digital Marketer <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>Marketing specialists are crucial in the Philippines' rapidly growing digital economy. E-commerce platforms (Lazada, Shopee), FMCG companies (Unilever, Nestlé Philippines), media firms, and BPOs hire marketing professionals for brand management, social media, SEO, and performance marketing campaigns.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱22,000–₱130,000+/month. Entry digital marketing associate ≈ ₱22–35k; Mid-level brand manager ≈ ₱45–80k; Senior marketing director ≈ ₱100–150k+. E-commerce and tech firms pay higher.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Marketing Management, BS Business Administration (Marketing major), or BS Communication; Google Ads certification, Meta Blueprint, HubSpot Inbound Marketing, and SEMrush certification are valuable. No PRC licensure required.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Planning and executing digital marketing campaigns (Google Ads, Meta Ads); managing social media content calendars for Facebook, Instagram, TikTok; analyzing campaign performance via Google Analytics and Meta Insights; coordinating with creative teams for ad materials; conducting market research and competitor analysis; reporting ROI to management.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/marketing-specialist/salary" target="_blank" rel="noopener">JobStreet PH – Marketing Salary</a>
+            <a href="https://dti.gov.ph/go-negosyo/e-commerce/" target="_blank" rel="noopener">DTI – E-Commerce Philippines</a>
+            <a href="https://www.iaap.ph/" target="_blank" rel="noopener">IAAP – Marketing Professionals</a>
+            <a href="https://ph.talent.com/salary?job=marketing+specialist" target="_blank" rel="noopener">Talent.com PH – Marketing Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Financial Analyst <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>Financial analysts work in banks (BDO, BPI, Metrobank, UnionBank), investment houses, insurance firms, and corporate treasury departments. With the BSP's ongoing financial inclusion push and growing stock market participation, financial analysis expertise is in consistent demand in the Philippines.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱28,000–₱160,000+/month. Entry financial analyst ≈ ₱28–45k; Mid-level ≈ ₱55–90k; Senior analyst/investment banker ≈ ₱100–160k+. Foreign banks and investment firms pay premium.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Finance, BS Accountancy, or BS Economics; CPA helpful; CFA (Chartered Financial Analyst) designation is the gold standard. Securities Representative License from IC (Insurance Commission) or broker-dealer license from SEC for capital markets roles.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Analyzing company financial statements and industry data; building financial models in Excel; preparing investment research reports; monitoring stock market movements (PSE); presenting findings to portfolio managers or executives; assessing credit risk for loan applications; tracking macroeconomic indicators (BSP, PSA data).</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/financial-analyst/salary" target="_blank" rel="noopener">JobStreet PH – Financial Analyst</a>
+            <a href="https://www.bsp.gov.ph/" target="_blank" rel="noopener">BSP – Bangko Sentral ng Pilipinas</a>
+            <a href="https://www.sec.gov.ph/capital-market-professionals/" target="_blank" rel="noopener">SEC PH – Capital Market Professionals</a>
+            <a href="https://ph.indeed.com/q-Financial-Analyst-jobs.html" target="_blank" rel="noopener">Indeed PH – Financial Analyst Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Human Resources (HR) Specialist <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>HR professionals manage recruitment, employee relations, payroll compliance (SSS, PhilHealth, Pag-IBIG), and organizational development. With hundreds of BPO companies and growing SME sector, HR roles are highly available across Metro Manila, Cebu, and Davao. DOLE compliance expertise is essential.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱22,000–₱130,000+/month. HR associate/recruiter ≈ ₱22–35k; HR manager ≈ ₱50–90k; HR director/CHRO ≈ ₱100–150k+. BPO and MNC firms offer the best packages.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Human Resource Management, BS Psychology, or BS Business Administration; CHRP (Certified HR Professional) from PMAP (People Management Association of the Philippines); DOLE Labor Relations certification is advantageous.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Posting job vacancies and screening applicants on JobStreet and LinkedIn; conducting initial interviews and facilitating assessments; processing SSS/PhilHealth/Pag-IBIG contributions; handling employee disciplinary procedures per DOLE guidelines; facilitating onboarding and training programs; maintaining 201 employee files and HRIS systems.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/human-resources/salary" target="_blank" rel="noopener">JobStreet PH – HR Salary</a>
+            <a href="https://www.dole.gov.ph/" target="_blank" rel="noopener">DOLE Philippines</a>
+            <a href="https://www.pmap.org.ph/" target="_blank" rel="noopener">PMAP – HR Association PH</a>
+            <a href="https://ph.indeed.com/q-HR-Specialist-jobs.html" target="_blank" rel="noopener">Indeed PH – HR Specialist Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Real Estate Broker <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>Real estate brokers in the Philippines facilitate property transactions — residential, commercial, and industrial. With the condominium boom in Metro Manila, Cebu, and Davao, and OFW remittance-driven property purchases, licensed brokers are in consistent demand. Major developers include Ayala Land, SM Prime, SMDC, and DMCI Homes.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱20,000–₱300,000+/month (largely commission-based). Entry broker ≈ ₱20–40k; Active broker mid-career ≈ ₱60–120k; Top producers ≈ ₱200–300k+. Commission ranges from 1.5%–5% per transaction.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Real Estate Management (4 years); Real Estate Broker Licensure Examination by PRC. 120-hour Continuing Professional Development (CPD) required for license renewal every 3 years. DHSUD and HLURB compliance required.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Meeting with clients to understand property requirements; conducting property viewings and tripping schedules; preparing CMAs (Comparative Market Analysis); coordinating with developers and banks for financing options; processing BIR and LRA documents for title transfer; prospecting leads via social media and referrals.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/real-estate-broker/salary" target="_blank" rel="noopener">JobStreet PH – Real Estate Broker</a>
+            <a href="https://www.prc.gov.ph/real-estate-service" target="_blank" rel="noopener">PRC – Real Estate Service</a>
+            <a href="https://www.dhsud.gov.ph/" target="_blank" rel="noopener">DHSUD Philippines</a>
+            <a href="https://ph.talent.com/salary?job=real+estate+broker" target="_blank" rel="noopener">Talent.com PH – Broker Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Supply Chain / Logistics Manager <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>Supply chain professionals are vital to manufacturing, retail, e-commerce, and food industries in the Philippines. Companies like Jollibee, San Miguel, and major e-commerce logistics providers (Ninja Van, J&T Express, LBC) employ supply chain specialists nationwide. Post-pandemic supply chain disruptions have elevated demand for this role.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱25,000–₱150,000+/month. Entry supply chain analyst ≈ ₱25–40k; Mid-level logistics/purchasing manager ≈ ₱50–90k; VP Supply Chain ≈ ₱120–180k+.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Business Administration (Supply Chain/Logistics), BS Industrial Engineering, or BS Management. CSCP (Certified Supply Chain Professional) or CLTD from ASCM; CSCMP certifications are internationally recognized. SAP supply chain module knowledge is a plus.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Coordinating with suppliers for purchase orders and delivery schedules; managing inventory levels and warehouse operations; tracking shipments via logistics management software; negotiating contracts with freight forwarders and 3PL providers; analyzing supply chain costs and identifying efficiency improvements; ensuring customs compliance for import/export.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/supply-chain-manager/salary" target="_blank" rel="noopener">JobStreet PH – Supply Chain Salary</a>
+            <a href="https://www.dti.gov.ph/" target="_blank" rel="noopener">DTI – Trade & Industry</a>
+            <a href="https://www.peza.gov.ph/" target="_blank" rel="noopener">PEZA – Industrial Ecozones</a>
+            <a href="https://ph.indeed.com/q-Supply-Chain-Manager-jobs.html" target="_blank" rel="noopener">Indeed PH – Supply Chain Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Auditor (Internal / External) <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>Auditors examine financial records and internal controls to ensure compliance with regulations (BIR, SEC, BSP). External auditors in Big 4 firms audit publicly listed companies under SEC requirements. Government auditors (COA — Commission on Audit) are a major career path in the Philippines' public sector.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱25,000–₱180,000+/month. Junior auditor (Big 4) ≈ ₱28–42k; Senior auditor/audit manager ≈ ₱60–120k; Audit director/partner ≈ ₱150–250k+. COA auditors (government) follow Salary Grade (SG) scale.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Accountancy (required); CPA license from PRC (mandatory for external audit signing); CIA (Certified Internal Auditor) for internal audit specialization. COA requires civil service eligibility.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Planning and executing audit engagements per PAS/PFRS standards; reviewing financial transactions and supporting documents; testing internal controls and identifying risk areas; preparing audit findings and management letters; coordinating with auditee management; filing audit reports with SEC or COA as applicable.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/auditor/salary" target="_blank" rel="noopener">JobStreet PH – Auditor Salary</a>
+            <a href="https://www.prc.gov.ph/accountancy" target="_blank" rel="noopener">PRC – CPA Licensure</a>
+            <a href="https://www.coa.gov.ph/" target="_blank" rel="noopener">COA – Commission on Audit</a>
+            <a href="https://ph.indeed.com/q-Internal-Auditor-jobs.html" target="_blank" rel="noopener">Indeed PH – Auditor Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Entrepreneur / Business Owner <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>The Philippines has a vibrant entrepreneurial culture fueled by SMEs, family businesses, franchising (Jollibee, McDonald's), and digital startups. DTI, DOST SETUP, and SBCORP provide support for MSMEs. E-commerce platforms (Shopee, Lazada, TikTok Shop) have enabled thousands of Filipinos to start online businesses.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>Variable — ₱15,000 to millions per month depending on business type, scale, and profitability. MSMEs typically earn ₱20–150k/month net profit. Franchise businesses require capital of ₱500k–₱5M+ depending on the brand.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>No specific degree required, but BS Business Administration, BS Entrepreneurship, or BS Management is helpful. DTI business registration, BIR TIN, Mayor's Permit, and Barangay Clearance are required to legally operate. TESDA entrepreneurship courses available.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Managing daily business operations and cash flow; handling supplier negotiations and inventory; marketing via social media and online platforms; serving customers and resolving complaints; filing BIR monthly/quarterly returns; planning business expansion and new product launches.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://www.dti.gov.ph/go-negosyo/" target="_blank" rel="noopener">DTI – Go Negosyo Program</a>
+            <a href="https://www.sbcorp.ph/" target="_blank" rel="noopener">SBCorp – SME Financing</a>
+            <a href="https://www.bir.gov.ph/index.php/business-registration.html" target="_blank" rel="noopener">BIR – Business Registration</a>
+            <a href="https://philtrade.gov.ph/" target="_blank" rel="noopener">PhilTrade – Trade Resources</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Sales Executive / Sales Manager <span class="strand-label">ABM</span></div>
+        <div class="info-section"><b>Description:</b><p>Sales professionals drive revenue across insurance (Sun Life, AXA, Pru Life UK), real estate, pharma, FMCG, and B2B tech sectors. The Philippines' growing consumer economy and expanding middle class make sales one of the most in-demand ABM career paths. Many top earners in the country are in sales.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱20,000–₱200,000+/month (base + commission). Entry sales rep ≈ ₱20–35k; Mid-level account manager ≈ ₱45–80k; Senior sales director ≈ ₱100–200k+. High commission earners in insurance and real estate can exceed ₱500k/month.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Marketing, BS Business Administration, or any related degree. Insurance agents require IC (Insurance Commission) license. Securities sales agents require SEC license. Professional Salesperson certification from PSMC (Philippine Sales Management Club) is optional.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Prospecting and qualifying leads via phone, email, and social media; presenting products or services to potential clients; preparing sales proposals and quotations; negotiating contracts and closing deals; maintaining CRM records (Salesforce, Zoho); achieving monthly/quarterly sales targets; coordinating with after-sales and customer service teams.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/sales-manager/salary" target="_blank" rel="noopener">JobStreet PH – Sales Manager Salary</a>
+            <a href="https://www.insurance-commission.com/" target="_blank" rel="noopener">IC – Insurance Commission PH</a>
+            <a href="https://dti.gov.ph/" target="_blank" rel="noopener">DTI Philippines</a>
+            <a href="https://ph.talent.com/salary?job=sales+manager" target="_blank" rel="noopener">Talent.com PH – Sales Pay</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /careers-grid ABM -->
+  </div><!-- /strand-group ABM -->
+
+  <!-- HUMSS -->
+  <div class="strand-group">
+    <div class="strand-heading">🗣️ HUMSS Strand — Humanities & Social Sciences</div>
+    <div class="careers-grid">
+
+      <div class="career-box">
+        <div class="career-title">Lawyer / Attorney <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>Lawyers are essential in the Philippines' legal system, practicing in law firms, corporations, government agencies (DOJ, NLRC, courts), and NGOs. The IBP (Integrated Bar of the Philippines) regulates the profession. Specializations in corporate law, labor law, and criminal law are most in demand. The Bar Exam is one of the most rigorous licensure tests in the country.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱30,000–₱300,000+/month. Government lawyer/PAO ≈ ₱30–60k; Associate lawyer (private firm) ≈ ₱45–90k; Senior partner/corporate counsel ≈ ₱150–350k+. In-house counsel in MNCs/banks: ₱100–200k+.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>Pre-law degree (AB Political Science, AB Philosophy, etc.) + Juris Doctor (JD) — 4 years; Philippine Bar Examination administered by the Supreme Court; IBP membership required for practice.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting legal research on jurisprudence and statutes; drafting pleadings, contracts, MOAs, and legal opinions; appearing in court hearings (RTC, CA, Supreme Court); meeting with clients to understand legal concerns; negotiating settlements and ADR proceedings; keeping abreast of new laws and SC circulars.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/lawyer/salary" target="_blank" rel="noopener">JobStreet PH – Lawyer Salary</a>
+            <a href="https://www.sc.judiciary.gov.ph/bar-matters/" target="_blank" rel="noopener">Supreme Court – Bar Exams</a>
+            <a href="https://www.ibp.ph/" target="_blank" rel="noopener">IBP – Integrated Bar Philippines</a>
+            <a href="https://ph.talent.com/salary?job=lawyer" target="_blank" rel="noopener">Talent.com PH – Lawyer Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Psychologist / Counseling Psychologist <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>With growing mental health awareness in the Philippines (Mental Health Act RA 11036), licensed psychologists work in hospitals, schools, HR departments, NGOs, and private practice. Industrial/organizational (I/O) psychologists are in demand in BPOs and corporations for pre-employment assessments and organizational development.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱20,000–₱100,000+/month. Entry psychometrician ≈ ₱20–30k; School/HR psychologist ≈ ₱30–55k; Clinical/licensed psychologist ≈ ₱45–100k+. Private practice rates: ₱1,500–₱5,000/session.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Psychology (4 years); Psychometrician Licensure Examination by PRC; for higher practice, MS/MA Psychology; Psychologist Licensure Examination (for full licensure). Specialization requires postgraduate training in clinical, counseling, or I/O psychology.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting psychological assessments and psychometric testing; facilitating individual and group counseling sessions; preparing psychological reports and referrals; coordinating with psychiatrists on complex cases; conducting training and team-building workshops (I/O setting); promoting mental wellness programs in schools or companies.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/psychologist/salary" target="_blank" rel="noopener">JobStreet PH – Psychologist Salary</a>
+            <a href="https://www.prc.gov.ph/psychology" target="_blank" rel="noopener">PRC – Psychology Licensure</a>
+            <a href="https://www.doh.gov.ph/mental-health" target="_blank" rel="noopener">DOH – Mental Health Act</a>
+            <a href="https://ph.indeed.com/q-Psychologist-jobs.html" target="_blank" rel="noopener">Indeed PH – Psychologist Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Journalist / Broadcast Reporter <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>Journalists work in major Philippine media networks (ABS-CBN, GMA, CNN Philippines, DZRH, Philippine Star, Inquirer, Rappler). Digital journalism is booming with news sites and vloggers. With press freedom being a persistent issue, investigative journalism and digital media literacy roles are increasingly valued. NUJP (National Union of Journalists) is the professional body.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱90,000+/month. Entry journalist/researcher ≈ ₱18–28k; Mid-level reporter/correspondent ≈ ₱30–55k; Senior anchor/editor ≈ ₱60–100k+. Digital content creators with large audiences can earn significantly more via platforms and sponsorships.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>AB Communication, AB Journalism, AB Broadcasting, or AB Mass Communication (4 years). No PRC licensure exam. Membership in NUJP (National Union of Journalists of the Philippines) or PCIJ is professional recognition. Internship at media networks is essential.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Researching and verifying news stories and sources; writing news articles, scripts, and feature stories; conducting interviews with sources and officials; editing footage or audio for broadcast; filing stories on deadline; attending press conferences and media briefings; managing social media accounts for news content.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/journalist/salary" target="_blank" rel="noopener">JobStreet PH – Journalist Salary</a>
+            <a href="https://www.nujp.org/" target="_blank" rel="noopener">NUJP – National Union of Journalists</a>
+            <a href="https://pcij.org/" target="_blank" rel="noopener">PCIJ – Philippine Center for Investigative Journalism</a>
+            <a href="https://ph.indeed.com/q-Journalist-Reporter-jobs.html" target="_blank" rel="noopener">Indeed PH – Journalist Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Teacher / Educator <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>Teachers are the backbone of Philippine education. DepEd employs over 900,000 public school teachers nationwide. Private schools, international schools (especially in Metro Manila), and online ESL tutoring platforms (51Talk, Preply, iTalki) offer additional opportunities. The LET (Licensure Examination for Teachers) is one of the most-taken PRC exams annually.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱25,000–₱80,000+/month. Public school teacher (DepEd) ≈ ₱25–40k (SG 11–15); Private school ≈ ₱20–45k; International/premium school ≈ ₱40–80k+. Online ESL tutors can earn ₱30–60k/month working part-time.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS/AB Education (4 years) with specialization (BSED — secondary; BEED — elementary); Licensure Examination for Teachers (LET) by PRC; DepEd PPST (Professional Standards for Teachers) certification; Master of Arts in Education (MAEd) for senior or administrative roles.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Preparing lesson plans aligned to DepEd K-12 curriculum or IPCRF; facilitating classroom instruction and assessment; checking assignments, quizzes, and projects; recording grades in LIS (Learner Information System); attending faculty meetings and school LAC sessions; communicating with parents during quarterly conferences; creating engaging digital learning materials.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/teacher/salary" target="_blank" rel="noopener">JobStreet PH – Teacher Salary</a>
+            <a href="https://www.prc.gov.ph/teachers" target="_blank" rel="noopener">PRC – LET Licensure</a>
+            <a href="https://www.deped.gov.ph/" target="_blank" rel="noopener">DepEd Philippines</a>
+            <a href="https://ph.talent.com/salary?job=teacher" target="_blank" rel="noopener">Talent.com PH – Teacher Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Social Worker <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>Licensed social workers serve vulnerable communities through DSWD (Department of Social Welfare and Development), NGOs, hospitals, schools, and LGUs. They handle child protection, AICS (Assistance to Individuals in Crisis Situations), PWD support, and disaster relief. Social work is vital in typhoon-prone and high-poverty areas of the Philippines.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱70,000+/month. Entry DSWD social worker ≈ ₱18–28k; NGO/private sector ≈ ₱25–50k; Senior supervisor/program manager ≈ ₱50–75k+. International NGO roles (UNICEF, Save the Children) offer higher packages.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Social Work (4 years); Social Worker Licensure Examination by PRC (SWLE); DSWD AO 16-2012 requires all DSWD social workers to be licensed. Specialization in child protection or disaster risk reduction is valuable.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting home visits and community assessments; processing AICS applications for cash/food/medical assistance; coordinating with barangay officials and LGU social welfare offices; facilitating livelihood and skills training programs; writing case studies and progress notes; preparing reports for DSWD central office or donor agencies.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/social-worker/salary" target="_blank" rel="noopener">JobStreet PH – Social Worker Salary</a>
+            <a href="https://www.prc.gov.ph/social-work" target="_blank" rel="noopener">PRC – Social Work Licensure</a>
+            <a href="https://www.dswd.gov.ph/" target="_blank" rel="noopener">DSWD Philippines</a>
+            <a href="https://ph.indeed.com/q-Social-Worker-jobs.html" target="_blank" rel="noopener">Indeed PH – Social Worker Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Guidance Counselor <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>Guidance counselors provide academic, career, and personal-social counseling to students in Philippine basic education (DepEd) and higher education (CHED). RA 9258 mandates licensed guidance counselors in schools. The mental health crisis among Filipino youth post-pandemic has significantly increased demand for school-based counselors.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱65,000+/month. Public school guidance counselor ≈ ₱18–35k (DepEd SG scale); Private school ≈ ₱22–45k; University/collegiate level ≈ ₱35–65k+.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Guidance & Counseling (4–5 years) or BS Psychology with MA Guidance and Counseling; Guidance Counselor Licensure Examination by PRC (required for practice per RA 9258); school practicum and supervised internship required.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Facilitating individual and group counseling sessions with students; administering and interpreting psychological assessments (CAT, ADHD screening); coordinating with parents, teachers, and school administrators on student concerns; monitoring at-risk students; organizing career orientation activities; preparing referral letters for students needing clinical intervention.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/guidance-counselor/salary" target="_blank" rel="noopener">JobStreet PH – Guidance Counselor</a>
+            <a href="https://www.prc.gov.ph/guidance-counseling" target="_blank" rel="noopener">PRC – Guidance Counseling Licensure</a>
+            <a href="https://www.deped.gov.ph/about-deped/issuances/do-2016/do-35-s-2016/" target="_blank" rel="noopener">DepEd – Guidance Services</a>
+            <a href="https://ph.indeed.com/q-Guidance-Counselor-jobs.html" target="_blank" rel="noopener">Indeed PH – Guidance Counselor Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Public Relations Specialist <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>PR specialists manage the public image and communications of corporations, government agencies, celebrities, and politicians in the Philippines. Corporate communications, crisis management, and government relations are key areas. Social media PR and influencer management are growing segments, especially in the OPM entertainment and corporate sectors.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱22,000–₱120,000+/month. Entry PR officer ≈ ₱22–35k; PR manager ≈ ₱50–90k; VP Communications/Corporate Affairs ≈ ₱100–150k+. PR agencies and government offices are the largest employers.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>AB Communication, AB Public Relations, or AB Journalism (4 years). PRSP (Public Relations Society of the Philippines) membership is professional recognition. Accredited Public Relations Practitioner (APRP) designation from PRSP is the local gold standard.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Drafting press releases and media advisories; managing media relationships and press inquiries; monitoring news mentions and social media sentiment; organizing press conferences and media briefings; creating internal communications materials; handling crisis communications and reputation management; coordinating with advertising and marketing teams.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/public-relations/salary" target="_blank" rel="noopener">JobStreet PH – PR Specialist Salary</a>
+            <a href="https://www.prsp.org.ph/" target="_blank" rel="noopener">PRSP – PR Society Philippines</a>
+            <a href="https://pia.gov.ph/" target="_blank" rel="noopener">PIA – Philippine Info Agency</a>
+            <a href="https://ph.talent.com/salary?job=public+relations+specialist" target="_blank" rel="noopener">Talent.com PH – PR Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Diplomat / Foreign Service Officer <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>Foreign Service Officers (FSOs) represent the Philippines in embassies, consulates, and international organizations worldwide. The DFA (Department of Foreign Affairs) handles consular services, bilateral relations, OFW protection, and treaty negotiations. The FSO Exam is one of the most competitive government exams in the Philippines.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱30,000–₱180,000+/month (depends on posting location and rank). FSO I–II ≈ ₱30–55k base; FSO III–IV ≈ ₱60–100k; Consul General/Ambassador ≈ ₱120–200k+. Overseas posts include additional allowances.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>Any 4-year degree (Political Science, International Relations, Law, or related fields preferred); Foreign Service Officer (FSO) Examination administered by DFA; Civil Service Commission (CSC) eligibility required; MA in International Studies or Law degree is advantageous.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Processing visa applications and authentication requests; managing bilateral meeting schedules and diplomatic correspondence; coordinating OFW assistance and repatriation programs; preparing country situation reports; attending official government functions and diplomatic receptions; facilitating trade and investment missions.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/diplomat/salary" target="_blank" rel="noopener">JobStreet PH – Diplomat Salary</a>
+            <a href="https://www.dfa.gov.ph/foreign-service-examination" target="_blank" rel="noopener">DFA – Foreign Service Exam</a>
+            <a href="https://www.csc.gov.ph/" target="_blank" rel="noopener">CSC – Civil Service Eligibility</a>
+            <a href="https://ph.indeed.com/q-Foreign-Service-Officer-jobs.html" target="_blank" rel="noopener">Indeed PH – FSO Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Political Scientist / Policy Analyst <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>Political scientists and policy analysts work in think tanks (PIDS, DAP), government agencies (NEDA, DILG, Congress), academe (UP, Ateneo, DLSU), and NGOs. They analyze legislation, craft policy recommendations, and conduct research on governance, public administration, and political systems in the Philippine context.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱22,000–₱120,000+/month. Research assistant/analyst ≈ ₱22–40k; Government policy officer ≈ ₱35–65k; Senior researcher/director ≈ ₱70–120k+. International organizations (UN, World Bank) offer higher packages.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>AB Political Science, AB Public Administration, or BA International Studies (4 years); MA Political Science, MPA (Master of Public Administration), or MPP (Master of Public Policy) for advanced roles; civil service eligibility for government positions.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Reviewing and analyzing proposed legislation and executive orders; writing policy briefs and research papers; conducting surveys and focus group discussions; presenting research findings to government officials or legislators; monitoring implementation of laws and programs; collaborating with international partners on governance projects.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/policy-analyst/salary" target="_blank" rel="noopener">JobStreet PH – Policy Analyst Salary</a>
+            <a href="https://www.pids.gov.ph/" target="_blank" rel="noopener">PIDS – Philippine Institute for Dev't Studies</a>
+            <a href="https://www.neda.gov.ph/" target="_blank" rel="noopener">NEDA Philippines</a>
+            <a href="https://ph.indeed.com/q-Policy-Analyst-jobs.html" target="_blank" rel="noopener">Indeed PH – Policy Analyst Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Linguist / Translator / Interpreter <span class="strand-label">HUMSS</span></div>
+        <div class="info-section"><b>Description:</b><p>Linguists, translators, and interpreters serve the Philippines' multilingual landscape and global connectivity. Major demand areas: legal translation (courts, DFA), BPO language support (Japanese, Korean, Mandarin, Spanish), subtitling, localization, and government translation (Komisyon ng Wikang Filipino). Filipino translators serving international courts (UNHCR, ICC) are increasingly sought.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱20,000–₱120,000+/month. Entry translator/language specialist ≈ ₱20–35k; Senior interpreter (courts/UN) ≈ ₱50–100k+; Freelance rates ₱500–₱2,000 per page for legal documents. Japanese/Korean/Mandarin specialists command a premium.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>AB Linguistics, AB Language Studies, AB Filipino (4 years); JLPT (for Japanese), HSK (for Mandarin), DELE (for Spanish), or DELF (for French) proficiency certifications. No PRC licensure required, but professional certifications from ATA or ITI are valued internationally.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Translating legal, medical, technical, or business documents between languages; providing simultaneous or consecutive interpretation at meetings and conferences; localizing software, websites, and video content; proofreading and quality-checking translated materials; coordinating with project managers on localization timelines; maintaining translation memory databases (CAT tools).</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/translator/salary" target="_blank" rel="noopener">JobStreet PH – Translator Salary</a>
+            <a href="https://kwf.gov.ph/" target="_blank" rel="noopener">KWF – Komisyon ng Wikang Filipino</a>
+            <a href="https://dfa.gov.ph/authentication" target="_blank" rel="noopener">DFA – Document Authentication</a>
+            <a href="https://ph.indeed.com/q-Translator-Interpreter-jobs.html" target="_blank" rel="noopener">Indeed PH – Translator Jobs</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /careers-grid HUMSS -->
+  </div><!-- /strand-group HUMSS -->
+
+  <!-- GAS -->
+  <div class="strand-group">
+    <div class="strand-heading">🏛️ GAS Strand — General Academic Strand</div>
+    <div class="careers-grid">
+
+      <div class="career-box">
+        <div class="career-title">Police Officer (PNP) <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Police officers serve in the Philippine National Police (PNP), maintaining peace and order, enforcing laws, and responding to emergencies. With over 220,000 uniformed personnel, the PNP is one of the country's largest employers. Specialized units include the CIDG, SWAT, HPG (Highway Patrol Group), and PNP-ACG (Anti-Cybercrime Group).</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱29,668–₱140,000+/month (based on NAPOLCOM pay scale). Police Officer 1 (PO1) base ≈ ₱29,668 + allowances; Senior Inspector ≈ ₱60–90k; Chief Superintendent/Director ≈ ₱100–140k+. Includes benefits: PERA, RATA, hazard pay.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>Minimum: Bachelor's degree (any field) or completion of PNP Academy (PNPA); NAPOLCOM Entrance Examination; physical and medical fitness tests; neuro-psychiatric evaluation; drug test clearance. PNPA cadets earn a commission upon graduation.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting patrol operations and checkpoint duties; responding to emergency calls and incident reports; conducting criminal investigations and case build-up; preparing blotter reports and affidavits; coordinating with barangay officials on community policing programs; testifying in court as witnesses; attending mandatory training and capability development programs.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/police-officer/salary" target="_blank" rel="noopener">JobStreet PH – Police Officer</a>
+            <a href="https://napolcom.gov.ph/index.php/examination" target="_blank" rel="noopener">NAPOLCOM – Police Exam</a>
+            <a href="https://pnp.gov.ph/" target="_blank" rel="noopener">PNP – Philippine National Police</a>
+            <a href="https://pnpa.edu.ph/" target="_blank" rel="noopener">PNPA – Police Academy</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Public Administrator / Civil Servant <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Civil servants work in national government agencies (NGA) and LGUs across the Philippines. Positions range from administrative staff to department heads and directors. Career paths include DILG, NEDA, DBM, CSC, and Congressional staff. The civil service offers job security, pension benefits under GSIS, and significant public impact opportunities.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱19,744–₱180,000+/month (based on Salary Grade system). SG 1 (entry clerk) ≈ ₱19,744; SG 15 (division chief) ≈ ₱50–70k; SG 30 (department secretary) ≈ ₱150–180k. Plus PERA, RATA, and other benefits.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Public Administration, AB Political Science, or any relevant degree; Civil Service Professional or Sub-Professional Examination (CSE) from CSC is typically required; CSCL (Career Service Commission Licensure) for career positions. CESO eligibility for executive posts.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Processing government transactions (permits, licenses, certificates); preparing official correspondence, memos, and reports; maintaining government records and filing systems; coordinating inter-agency activities and meetings; facilitating public consultation and hearing processes; monitoring program budgets against GAA (General Appropriations Act) allocations.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/government-officer/salary" target="_blank" rel="noopener">JobStreet PH – Gov't Officer Salary</a>
+            <a href="https://www.csc.gov.ph/civil-service-examination" target="_blank" rel="noopener">CSC – Civil Service Exam</a>
+            <a href="https://dilg.gov.ph/" target="_blank" rel="noopener">DILG – Local Government</a>
+            <a href="https://dbm.gov.ph/" target="_blank" rel="noopener">DBM – Salary Standardization</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Event Planner / Coordinator <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Event planners organize weddings, corporate events, government functions, concerts, and trade shows. The Philippines has a thriving events industry, with major players like Stellar, G-Force, and Whitespace Events handling large-scale productions. Destination weddings in Palawan, Boracay, and Tagaytay generate significant event planning demand.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱120,000+/month. Entry events coordinator ≈ ₱18–28k; Mid-level events manager ≈ ₱35–65k; Senior/director level ≈ ₱70–120k+. Freelance event planners earn per-project rates of ₱15,000–₱150,000+ depending on event scale.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Tourism Management, BS Hotel and Restaurant Management, AB Communication, or any related degree; no PRC exam required; CSEP (Certified Special Events Professional) from ISES is internationally recognized. TESDA Event Management NC II available for entry-level qualification.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Meeting with clients to plan event concepts, budgets, and timelines; negotiating with venues, caterers, suppliers, and performers; coordinating logistics (audio-visual, lighting, transportation, accommodations); overseeing event setup and ensuring smooth execution; handling on-site problem-solving; post-event documentation and client feedback; managing social media for event promotion.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/event-planner/salary" target="_blank" rel="noopener">JobStreet PH – Event Planner Salary</a>
+            <a href="https://www.tesda.gov.ph/Downloadables/Events%20Management%20Services%20NC%20II.pdf" target="_blank" rel="noopener">TESDA – Events Mgmt NC II</a>
+            <a href="https://tourism.gov.ph/" target="_blank" rel="noopener">DOT – Department of Tourism</a>
+            <a href="https://ph.indeed.com/q-Event-Coordinator-jobs.html" target="_blank" rel="noopener">Indeed PH – Event Coordinator Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Tourism Officer / Travel Consultant <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Tourism professionals promote Philippine destinations, manage travel agencies, and work for the Department of Tourism (DOT) and LGU tourism offices. With the Philippines ranking among Southeast Asia's top tourism destinations, travel consultants, tour operators, and destination managers are in strong demand, particularly post-pandemic recovery.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱80,000+/month. Entry travel consultant ≈ ₱18–28k; LGU tourism officer ≈ ₱25–45k; Senior tourism director ≈ ₱50–80k+. Commission-based travel agents can earn significantly more during peak season.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Tourism Management or BS Hospitality Management (4 years); no PRC licensure exam (non-licensed profession), but DOT-accredited training is recognized; TESDA Tourism services qualifications (NC II–IV) available; IATA Certification for airline ticketing and travel agency operations.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Assisting clients with travel itinerary planning, visa applications, and bookings; coordinating with airlines, hotels, and tour operators for packages; handling GDS (Amadeus, Sabre) reservations; managing LGU or DOT-sponsored tourism events and campaigns; conducting eco-tourism and heritage tour guiding; maintaining tourism databases and visitor statistics; social media content for destination promotion.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/travel-consultant/salary" target="_blank" rel="noopener">JobStreet PH – Travel Consultant</a>
+            <a href="https://tourism.gov.ph/" target="_blank" rel="noopener">DOT – Dept. of Tourism Philippines</a>
+            <a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA – Tourism Qualifications</a>
+            <a href="https://ph.indeed.com/q-Tourism-Officer-jobs.html" target="_blank" rel="noopener">Indeed PH – Tourism Officer Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Administrative Officer <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Administrative officers support operations in both public and private organizations across the Philippines. They handle records management, scheduling, procurement, and office coordination. BPOs, schools, hospitals, and government agencies are major employers. Executive assistants in large corporations command higher salaries.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱80,000+/month. Entry admin assistant ≈ ₱18–25k; Mid-level admin officer ≈ ₱28–50k; Executive assistant/senior admin ≈ ₱45–80k+. Government positions follow SG 8–15 salary scale.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Business Administration, BS Office Administration, or any 4-year degree; Civil Service Sub-Professional Exam (for government positions); TESDA Business Administration NC II/III for vocational path; proficiency in MS Office Suite (Word, Excel, PowerPoint) is essential.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Managing correspondence, emails, and filing systems; scheduling meetings and maintaining calendars for executives; processing purchase orders, liquidation reports, and petty cash; coordinating travel arrangements and accommodation bookings; preparing minutes of meetings and action item trackers; handling frontline inquiries and visitor management.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/administrative-officer/salary" target="_blank" rel="noopener">JobStreet PH – Admin Officer Salary</a>
+            <a href="https://www.csc.gov.ph/" target="_blank" rel="noopener">CSC – Civil Service Commission</a>
+            <a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA – Business Admin NC</a>
+            <a href="https://ph.indeed.com/q-Administrative-Officer-jobs.html" target="_blank" rel="noopener">Indeed PH – Admin Officer Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Librarian / Information Specialist <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Librarians and information specialists manage knowledge resources in schools, universities, public libraries (NLP), hospitals, law firms, and government offices. With digitalization, library science professionals are transitioning into digital archives, knowledge management systems, and information architecture roles. National Library of the Philippines and DLSU library system are notable employers.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱20,000–₱70,000+/month. Entry librarian ≈ ₱20–30k; Academic/hospital librarian ≈ ₱30–50k; Chief Librarian/Information Manager ≈ ₱50–75k+. Government librarians follow SG pay scale.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Library and Information Science (BLIS) — 4 years; Librarian Licensure Examination by PRC (RA 9246). Master of Library and Information Science (MLIS) for higher positions. PLAI (Philippine Librarians Association) membership is recognized professional standing.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Cataloging and classifying library materials using Dewey Decimal or LC Classification; managing library management systems (Koha, Destiny); assisting patrons with research and information queries; maintaining digital archives and online databases; developing library instruction programs; evaluating and acquiring new materials; managing inter-library loan services.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/librarian/salary" target="_blank" rel="noopener">JobStreet PH – Librarian Salary</a>
+            <a href="https://www.prc.gov.ph/library-information-science" target="_blank" rel="noopener">PRC – Library Science Licensure</a>
+            <a href="https://nlp.gov.ph/" target="_blank" rel="noopener">NLP – National Library Philippines</a>
+            <a href="https://ph.indeed.com/q-Librarian-jobs.html" target="_blank" rel="noopener">Indeed PH – Librarian Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Community Development Worker <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Community development workers facilitate grassroots programs for livelihood, housing, health, and education in LGUs and NGOs. Organizations like Gawad Kalinga, Habitat for Humanity Philippines, and DILG fund community development initiatives. DSWD Pantawid Pamilyang Pilipino Program (4Ps) employs community workers to assess and monitor beneficiaries nationwide.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱65,000+/month. Entry community facilitator ≈ ₱18–28k; NGO project officer ≈ ₱30–55k; Program manager ≈ ₱50–70k+. International NGO roles offer higher packages with allowances.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Community Development, BS Social Work, BS Public Administration, or AB Sociology (4 years); no PRC licensure required; civil service eligibility for government positions; Development Management courses from DAP (Development Academy of the Philippines) are valuable.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Conducting community needs assessments and household surveys; facilitating barangay assemblies and community planning workshops; implementing livelihood training programs; monitoring and evaluating project outcomes; coordinating with LGU officials, NGA partners, and NGOs; preparing project reports and M&E documentation; mobilizing community volunteers for programs.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/community-development/salary" target="_blank" rel="noopener">JobStreet PH – Community Dev't Salary</a>
+            <a href="https://www.dilg.gov.ph/" target="_blank" rel="noopener">DILG – Local Government Development</a>
+            <a href="https://dswd.gov.ph/" target="_blank" rel="noopener">DSWD – Social Welfare Programs</a>
+            <a href="https://ph.indeed.com/q-Community-Development-Officer-jobs.html" target="_blank" rel="noopener">Indeed PH – Community Dev't Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Customs Officer (BOC) <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Customs officers under the Bureau of Customs (BOC) regulate the entry and exit of goods through Philippine ports and airports. Key positions include Customs Operations Officer, Intelligence Officer, and Port Operations staff at major ports (Manila, Cebu, Davao). Anti-smuggling and revenue collection are priority functions under the CMTA (Customs Modernization and Tariff Act).</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱25,000–₱140,000+/month. Entry Customs Operations Officer I (SG 11) ≈ ₱27k; Senior Officers ≈ ₱50–80k; District Collector ≈ ₱100–140k+. RATA and representation allowances apply for senior positions.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>Any bachelor's degree; Civil Service Professional Examination (CSE) required; specific BOC recruitment exams and background investigation; knowledge of CMTA (RA 10863) and ASEAN tariff schedules is essential; advanced positions may require MS Customs Administration or law degree.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Processing import/export declarations in the ACOS (Automated Cargo Operations System); conducting examination and appraisal of imported goods; verifying tariff classification and customs valuation; processing post-entry audits; coordinating with BIR, PNP, and AFP on anti-smuggling operations; managing port access and cargo disposition; preparing BOC compliance reports.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/customs-officer/salary" target="_blank" rel="noopener">JobStreet PH – Customs Officer</a>
+            <a href="https://customs.gov.ph/recruitment/" target="_blank" rel="noopener">BOC – Bureau of Customs Recruitment</a>
+            <a href="https://www.csc.gov.ph/" target="_blank" rel="noopener">CSC – Civil Service Commission</a>
+            <a href="https://ph.indeed.com/q-Customs-Officer-jobs.html" target="_blank" rel="noopener">Indeed PH – Customs Officer Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Sociologist / Social Researcher <span class="strand-label">GAS</span></div>
+        <div class="info-section"><b>Description:</b><p>Sociologists and social researchers study Filipino society, culture, and social issues. They work in academic institutions (UP, Ateneo), government think tanks (PIDS, NEDA), international organizations (UNICEF, UN Women), and NGOs. Policy research on poverty, gender, urbanization, and labor migration is highly relevant in the Philippine context.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱22,000–₱100,000+/month. Entry research assistant ≈ ₱22–32k; Social researcher ≈ ₱35–60k; Senior researcher/professor ≈ ₱60–100k+. International org roles offer higher salaries and benefits.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>AB Sociology, AB Anthropology, or AB Social Science (4 years); MA/MS Sociology or Social Research Methods for advanced roles; civil service eligibility for government positions; DOST scholarship programs available for graduate studies.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Designing research frameworks and data collection instruments; conducting surveys, interviews, and focus group discussions in communities; analyzing qualitative and quantitative social data; writing research reports, journal articles, and policy papers; presenting findings to government or donor agencies; advocating for policy reforms based on evidence; teaching sociology or social sciences at the tertiary level.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/sociologist/salary" target="_blank" rel="noopener">JobStreet PH – Sociologist Salary</a>
+            <a href="https://pids.gov.ph/" target="_blank" rel="noopener">PIDS – Policy Research Institute</a>
+            <a href="https://dost.gov.ph/" target="_blank" rel="noopener">DOST – Research Scholarships</a>
+            <a href="https://ph.indeed.com/q-Social-Researcher-jobs.html" target="_blank" rel="noopener">Indeed PH – Social Researcher Jobs</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /careers-grid GAS -->
+  </div><!-- /strand-group GAS -->
+
+</div><!-- /academic-section -->
+
+
+<!-- ============================================================
+     TECHNICAL PROFESSIONAL TRACK
+     ============================================================ -->
+<div id="technical-section" class="prof-section">
+  <div class="section-header">
+    <div class="section-header-text">
+      <h2>💻 Technical Professional Track</h2>
+      <p>TVL-ICT — Skilled & Technical Careers in the Digital Economy</p>
+    </div>
+    <button class="back-btn" onclick="goHome()">← Back to Tracks</button>
+  </div>
+
+  <div class="strand-group">
+    <div class="strand-heading">🖥️ TVL-ICT — Technical-Vocational-Livelihood (Information & Communications Technology)</div>
+    <div class="careers-grid">
+
+      <div class="career-box">
+        <div class="career-title">Software Developer / Programmer <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Software developers are among the most in-demand tech professionals in the Philippines. They work in IT/software companies, BPO-IT firms, banks (BDO, BPI, UnionBank), government digital agencies (DICT), and startups. The Philippines' IT-BPM sector generates over $35B annually, making software development a high-priority career. Remote work for US and Australian clients is extremely common.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱30,000–₱200,000+/month. Entry developer (junior) ≈ ₱30–50k; Mid-level software engineer ≈ ₱60–100k; Senior/lead developer ≈ ₱100–180k+. Remote work for foreign clients can yield ₱150–300k equivalent monthly. NodeFlair 2025 data confirms Metro Manila tech salaries are among SEA's most competitive.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Computer Science, BS Information Technology, or BSIT (4 years); alternatively: TESDA ICT NC III + bootcamp portfolio; Oracle Java SE Programmer, AWS Developer, Microsoft Azure Developer certifications valued. No PRC licensure exam required for private sector practice.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Writing and reviewing code in languages like Java, Python, JavaScript, or PHP; attending daily Scrum/stand-up meetings with development teams; debugging and resolving software defects; deploying code updates via CI/CD pipelines (GitHub Actions, Jenkins); reviewing pull requests and conducting code reviews; collaborating with UI/UX designers; writing unit and integration tests.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/software-developer/salary" target="_blank" rel="noopener">JobStreet PH – Software Dev Salary</a>
+            <a href="https://www.tesda.gov.ph/Downloadables/ICT%20NC%20III.pdf" target="_blank" rel="noopener">TESDA – ICT NC III</a>
+            <a href="https://www.nodeflair.com/salaries/philippines" target="_blank" rel="noopener">NodeFlair – Tech Salaries PH</a>
+            <a href="https://dict.gov.ph/" target="_blank" rel="noopener">DICT – Digital Careers PH</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Web Developer (Front-end / Back-end / Full-stack) <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Web developers build and maintain websites and web applications for Philippine businesses, e-commerce platforms, and international clients. Front-end developers (HTML/CSS/JavaScript/React) and full-stack developers are especially sought after. Freelance platforms (Upwork, Fiverr, Freelancer.com) allow Filipino web developers to earn in USD, making this one of the most financially rewarding tech pathways.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱25,000–₱180,000+/month. Entry web developer ≈ ₱25–40k; Mid-level ≈ ₱50–90k; Senior full-stack ≈ ₱100–180k+. Freelancers earning in USD commonly net ₱150–300k+ equivalent per month for mid-level skills.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Information Technology, BS Computer Science, or completion of recognized coding bootcamp (Zuitt, Kodego, DICT bootcamps); TESDA Web Development NC II available; freeCodeCamp, The Odin Project, or Coursera front-end/back-end specializations; no PRC licensure required.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Developing responsive front-end interfaces using React, Vue.js, or vanilla JavaScript; building and maintaining back-end APIs (Node.js, Laravel, Django); managing databases (MySQL, PostgreSQL, MongoDB); deploying web apps to cloud platforms (AWS, Google Cloud, Vercel); debugging cross-browser compatibility issues; collaborating on UI/UX implementation; optimizing site performance and SEO.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/web-developer/salary" target="_blank" rel="noopener">JobStreet PH – Web Developer Salary</a>
+            <a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA – Web Dev NC II</a>
+            <a href="https://www.nodeflair.com/salaries/philippines" target="_blank" rel="noopener">NodeFlair – Web Dev Salaries PH</a>
+            <a href="https://dict.gov.ph/ict-skills-training/" target="_blank" rel="noopener">DICT – ICT Skills Training</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">IT Support / Helpdesk Specialist <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>IT support specialists are the backbone of enterprise IT operations in the Philippines, particularly in BPO companies, banks, retail chains, and hospitals. Level 1 and Level 2 helpdesk roles provide first-line technical assistance. With over 1,000 BPO companies operating in the Philippines, IT support is one of the most available entry-level tech roles.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱75,000+/month. Entry L1 helpdesk ≈ ₱18–28k; L2/L3 technical support ≈ ₱30–55k; IT support supervisor/manager ≈ ₱55–80k+. Night shift differentials can add 10–20% to base pay.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Information Technology or any IT-related degree; TESDA Computer Hardware Servicing (CHS) NC II/III; CompTIA A+ certification is the global standard for helpdesk entry; ITIL 4 Foundation for service management; Microsoft 365 Certified: Fundamentals for cloud-based support.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Responding to IT helpdesk tickets via email, phone, or chat; troubleshooting hardware, software, and network issues; setting up workstations, printers, and peripherals; managing user accounts in Active Directory or Azure AD; documenting issues and resolutions in ticketing systems (ServiceNow, Jira, Freshdesk); coordinating with network and systems teams for escalated issues; conducting basic user training on software tools.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/it-support/salary" target="_blank" rel="noopener">JobStreet PH – IT Support Salary</a>
+            <a href="https://www.tesda.gov.ph/Downloadables/Computer%20Hardware%20Servicing%20NC%20II.pdf" target="_blank" rel="noopener">TESDA – CHS NC II</a>
+            <a href="https://ibpap.org/" target="_blank" rel="noopener">IBPAP – IT-BPM Association PH</a>
+            <a href="https://ph.indeed.com/q-IT-Support-Helpdesk-jobs.html" target="_blank" rel="noopener">Indeed PH – IT Support Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Network Administrator <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Network administrators maintain and optimize enterprise network infrastructure (LAN, WAN, VPN) for corporations, telcos (PLDT, Globe, Converge), BPOs, hospitals, and government agencies. With expanding fiber optic rollout and 5G deployment in the Philippines, network specialists are increasingly in demand. DICT's National Broadband Plan is creating public sector network jobs.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱25,000–₱120,000+/month. Entry network admin ≈ ₱25–40k; Mid-level network engineer ≈ ₱45–80k; Senior network architect ≈ ₱90–130k+. Telcos and MNCs pay premium rates. CCNA/CCNP holders command higher salaries.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Information Technology, BS Computer Engineering, or BS Electronics Engineering; Cisco Certified Network Associate (CCNA) is the primary entry-level certification; CCNP for mid-level; CompTIA Network+ also recognized; TESDA ICT NC II/III as vocational pathway.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Configuring and maintaining routers, switches, and firewalls (Cisco, Fortinet, Palo Alto); monitoring network performance using tools like PRTG, Nagios, or SolarWinds; troubleshooting network outages and latency issues; managing VPN access for remote workers; implementing network security policies and firewall rules; conducting bandwidth management and traffic analysis; documenting network topology and configurations.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/network-administrator/salary" target="_blank" rel="noopener">JobStreet PH – Network Admin Salary</a>
+            <a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA – ICT NC Qualifications</a>
+            <a href="https://dict.gov.ph/" target="_blank" rel="noopener">DICT – Digital Infrastructure</a>
+            <a href="https://www.nodeflair.com/salaries/philippines" target="_blank" rel="noopener">NodeFlair – Network Eng. Salaries PH</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Cybersecurity Analyst <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Cybersecurity analysts are among the most critical and highest-paid tech roles in the Philippines, driven by increasing cyber threats targeting banks (BSP Circular 1140), e-commerce platforms, and government systems. The DICT NCC (National Computer Center) and BSP's Financial Stability Coordination Council are expanding cybersecurity capacity. Demand far outpaces supply, making this a premium career.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱35,000–₱220,000+/month. Entry SOC analyst ≈ ₱35–55k; Mid-level security analyst ≈ ₱60–100k; Senior cybersecurity engineer/architect ≈ ₱120–220k+. Banks, telcos, and MNCs pay the highest. Certified professionals earn 30–50% premium.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Computer Science, BS Information Security, or BS IT; CompTIA Security+ for entry; Certified Ethical Hacker (CEH) from EC-Council; CISSP for senior roles; DICT Cybersecurity courses; BSP-mandated cybersecurity training for financial institutions. PSITE and ISACA Philippines chapters provide local training.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Monitoring security information and event management (SIEM) dashboards (Splunk, IBM QRadar); investigating security incidents and alerts; conducting vulnerability assessments and penetration testing; reviewing firewall logs and intrusion detection alerts; preparing incident response reports; conducting security awareness training for employees; reviewing compliance with BSP Circular 1140 / ISO 27001; patching and hardening servers and endpoints.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/cybersecurity-analyst/salary" target="_blank" rel="noopener">JobStreet PH – Cybersecurity Salary</a>
+            <a href="https://dict.gov.ph/cybersecurity/" target="_blank" rel="noopener">DICT – Cybersecurity Programs</a>
+            <a href="https://www.bsp.gov.ph/Pages/REGULATIONS/Issuances/2020/1140.pdf" target="_blank" rel="noopener">BSP Circular 1140 – Cybersecurity</a>
+            <a href="https://www.nodeflair.com/salaries/philippines" target="_blank" rel="noopener">NodeFlair – Cybersecurity Salaries PH</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Mobile App Developer <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Mobile app developers build iOS and Android applications for Philippine businesses, fintech companies (GCash, Maya, Tonik), ride-hailing platforms (Grab, Angkas), and international clients. The Philippines has 80M+ smartphone users, driving massive demand for mobile apps. Cross-platform development using Flutter and React Native is increasingly favored by startups and BPO-IT firms.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱30,000–₱200,000+/month. Junior mobile dev ≈ ₱30–50k; Mid-level iOS/Android developer ≈ ₱60–100k; Senior mobile engineer ≈ ₱100–180k+. Fintech apps command premium rates. Freelance foreign clients can double or triple local rates.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Computer Science, BS IT, or BSIT with software engineering track; Google Associate Android Developer certification; Apple iOS Developer Program; DICT mobile development bootcamps; React Native or Flutter certificates from Udemy/Coursera; no PRC licensure required.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Designing and coding mobile user interfaces for iOS (Swift/Objective-C) or Android (Kotlin/Java); integrating RESTful APIs and third-party SDKs; conducting device compatibility and performance testing; publishing apps to Google Play Store and Apple App Store; debugging crashes via Firebase Crashlytics or Sentry; collaborating with UX designers on wireframes; implementing push notifications, payment gateways (GCash, PayMaya), and analytics.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/mobile-app-developer/salary" target="_blank" rel="noopener">JobStreet PH – Mobile Dev Salary</a>
+            <a href="https://dict.gov.ph/ict-skills-training/" target="_blank" rel="noopener">DICT – ICT Skills Training</a>
+            <a href="https://www.nodeflair.com/salaries/philippines" target="_blank" rel="noopener">NodeFlair – Mobile Dev Salaries PH</a>
+            <a href="https://ph.indeed.com/q-Mobile-App-Developer-jobs.html" target="_blank" rel="noopener">Indeed PH – Mobile Dev Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Systems Analyst <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Systems analysts bridge the gap between business needs and technical solutions in Philippine corporations, government agencies, and BPO-IT companies. They analyze existing systems, gather requirements, and recommend IT solutions. DICT's eGov initiatives, bank digital transformation projects, and ERP implementations in manufacturing firms generate significant demand for systems analysts.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱30,000–₱150,000+/month. Junior systems analyst ≈ ₱30–45k; Mid-level ≈ ₱55–90k; Senior business/systems analyst ≈ ₱90–150k+. Banking, government digital projects, and ERP consulting pay the most.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Information Technology, BS Computer Science, or BS Industrial Engineering; IIBA CBAP (Certified Business Analysis Professional) for senior roles; PMI-PBA (Professional in Business Analysis); Microsoft Power Platform certification; SAP Business Analyst certification for ERP environments; no PRC licensure required.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Gathering and documenting business requirements via stakeholder interviews and workshops; creating business process flowcharts and use case diagrams; writing functional specifications and user stories; evaluating and recommending system solutions (build vs. buy); coordinating between development teams and end-users; conducting user acceptance testing (UAT); documenting system changes and maintaining technical documentation.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/systems-analyst/salary" target="_blank" rel="noopener">JobStreet PH – Systems Analyst Salary</a>
+            <a href="https://dict.gov.ph/" target="_blank" rel="noopener">DICT – eGov Systems</a>
+            <a href="https://www.nodeflair.com/salaries/philippines" target="_blank" rel="noopener">NodeFlair – Systems Analyst PH</a>
+            <a href="https://ph.indeed.com/q-Systems-Analyst-jobs.html" target="_blank" rel="noopener">Indeed PH – Systems Analyst Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Graphic Designer (ICT / Digital Media) <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Graphic designers create visual content for advertising agencies, BPO creative studios, e-commerce sellers, and digital media companies in the Philippines. Adobe Creative Cloud proficiency is standard. The rise of social media marketing, content creation, and online selling has dramatically expanded demand for digital graphic designers. Freelancing via 99designs, Upwork, and local platforms is common.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱120,000+/month. Entry graphic designer ≈ ₱18–30k; Mid-level ≈ ₱35–65k; Senior / Art Director ≈ ₱70–120k+. Freelancers with strong portfolios earn ₱80–150k+ equivalent working with international clients.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Multimedia Arts, BS Graphic Design, or BS Fine Arts (Advertising or Visual Communication) — 4 years; alternatively, TESDA Graphic Design NC II/III; Adobe Certified Professional (Photoshop, Illustrator, InDesign) certifications are industry-recognized. Portfolio is paramount over formal credentials.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Creating social media graphics, infographics, and marketing collaterals for clients; designing logos, brand identities, and style guides; editing photos and images in Adobe Photoshop; creating vector illustrations in Adobe Illustrator; laying out digital ads for Facebook, Instagram, and Google Display Network; collaborating with copywriters and marketing teams; preparing print-ready files for offset and digital printing.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/graphic-designer/salary" target="_blank" rel="noopener">JobStreet PH – Graphic Designer Salary</a>
+            <a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA – Graphic Design NC II</a>
+            <a href="https://www.creativeacademy.ph/" target="_blank" rel="noopener">Creative Academy PH</a>
+            <a href="https://ph.talent.com/salary?job=graphic+designer" target="_blank" rel="noopener">Talent.com PH – Graphic Designer Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Digital Media Specialist / Content Creator <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Digital media specialists manage online content, social media platforms, video production, and digital advertising for Philippine brands and media companies. The Philippines is one of the world's top social media users, creating massive demand for content creators. YouTube, TikTok, Facebook, and Instagram creator programs have enabled thousands of Filipinos to monetize digital content professionally.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱20,000–₱150,000+/month. Entry social media coordinator ≈ ₱20–32k; Digital content manager ≈ ₱40–75k; Creative director ≈ ₱80–150k+. Professional YouTubers/influencers with 100k+ subscribers can earn ₱50–500k+/month from ads, sponsorships, and brand deals.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>AB Communication, BS Multimedia Arts, or BS Information Technology; no PRC licensure required; Meta Social Media Marketing Certificate; YouTube Creator Academy; TESDA Digital Media Production NC II; Adobe Premiere Pro / Final Cut Pro proficiency essential for video roles.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Developing content calendars and social media strategies; shooting and editing video content (YouTube, TikTok, Reels) using Premiere Pro or CapCut; writing captions, blogs, and email newsletters; managing brand social media accounts (posting, engaging, responding); analyzing reach, engagement, and follower growth via Meta Insights and YouTube Analytics; coordinating with brand managers on sponsored content; live streaming and community management.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/digital-media-specialist/salary" target="_blank" rel="noopener">JobStreet PH – Digital Media Salary</a>
+            <a href="https://dict.gov.ph/ict-skills-training/" target="_blank" rel="noopener">DICT – Digital Skills Training</a>
+            <a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA – Digital Media Production NC</a>
+            <a href="https://ph.talent.com/salary?job=digital+media+specialist" target="_blank" rel="noopener">Talent.com PH – Digital Media Pay</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Call Center / IT Customer Service Representative <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>The Philippines is the world's #1 call center hub, with over 1.3 million agents employed in IT-BPM companies (Concentrix, Telus International, Accenture, TTEC, iQor). Technical support agents serve US, UK, Australian, and Canadian clients for telecom, technology, banking, and healthcare accounts. The industry contributes over $35B to the Philippine economy annually.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱18,000–₱80,000+/month. Entry CSR/TSR ≈ ₱18–28k + night differential; Senior tech support ≈ ₱30–50k; Team leader/QA supervisor ≈ ₱40–80k+. Night shift differential (10PM–6AM) adds 10% per DOLE rules. Voice accounts pay higher than non-voice.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>Any 2–4 year degree or even SHS graduate for entry-level voice accounts; TESDA BPMS (Business Process Management Services) NC II for non-voice; CompTIA A+ for technical support accounts; strong English communication skills (IELTS Band 6+ preferred); company-provided product-specific training is standard.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Handling inbound calls, chats, or emails from international customers; troubleshooting technical issues (internet connectivity, software errors, account access) using guided scripts and knowledge bases; documenting call outcomes in CRM systems (Salesforce, Zendesk); following DOLE-compliant BPO shift schedules; escalating complex issues to Tier 2/3 support; meeting SLA targets (AHT, CSAT, FCR); attending daily team huddles and coaching sessions.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/customer-service-representative/salary" target="_blank" rel="noopener">JobStreet PH – CSR Salary</a>
+            <a href="https://ibpap.org/" target="_blank" rel="noopener">IBPAP – IT-BPM Industry PH</a>
+            <a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA – BPMS NC II</a>
+            <a href="https://ph.indeed.com/q-Call-Center-IT-Support-jobs.html" target="_blank" rel="noopener">Indeed PH – Call Center Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Database Administrator (DBA) <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Database administrators manage, secure, and optimize databases for Philippine banks, government agencies, hospitals, and large corporations. BDO, BPI, and BSP-supervised financial institutions have stringent database management requirements. Cloud database management (AWS RDS, Azure SQL, Google Cloud SQL) is increasingly relevant as Philippine enterprises migrate to cloud infrastructure.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱28,000–₱160,000+/month. Entry DBA ≈ ₱28–45k; Mid-level database engineer ≈ ₱55–95k; Senior DBA / Cloud DBA ≈ ₱100–160k+. Banking and fintech sectors pay the highest for DBAs with Oracle or SQL Server expertise.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>BS Information Technology, BS Computer Science, or BS Computer Engineering; Oracle Database Certified Professional (OCP); Microsoft Certified: Azure Database Administrator Associate; AWS Certified Database Specialty; IBM Certified Database Administrator; TESDA ICT NC III as entry qualification.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Installing, configuring, and maintaining relational databases (Oracle, MySQL, Microsoft SQL Server, PostgreSQL); performing regular database backups and disaster recovery testing; monitoring database performance and query optimization; managing database user access and security policies; enforcing BSP/ISO 27001 data security standards for financial data; migrating on-premise databases to cloud platforms; writing stored procedures, views, and database scripts.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/database-administrator/salary" target="_blank" rel="noopener">JobStreet PH – DBA Salary</a>
+            <a href="https://dict.gov.ph/" target="_blank" rel="noopener">DICT – Digital Transformation PH</a>
+            <a href="https://www.nodeflair.com/salaries/philippines" target="_blank" rel="noopener">NodeFlair – DBA Salaries PH</a>
+            <a href="https://ph.indeed.com/q-Database-Administrator-jobs.html" target="_blank" rel="noopener">Indeed PH – DBA Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-box">
+        <div class="career-title">Data Encoder / Junior Data Analyst <span class="strand-label">TVL-ICT</span></div>
+        <div class="info-section"><b>Description:</b><p>Data encoders and junior analysts perform foundational data entry, cleaning, and basic analysis tasks for BPO companies, hospitals, insurance firms, and government agencies. The Philippine Statistics Authority (PSA), GSIS, PhilHealth, and SSS employ thousands of data encoding staff. This role serves as a career gateway into higher-level data analyst and data science positions.</p></div>
+        <div class="info-section"><b>Salary (PH estimate 2026):</b><p>₱15,000–₱40,000+/month. Entry data encoder ≈ ₱15–22k; Data verification specialist ≈ ₱22–32k; Junior data analyst ≈ ₱28–42k+. Government data encoder positions follow SG 4–8 pay scale. Accuracy incentives and night differential common in BPO settings.</p></div>
+        <div class="info-section"><b>Education / Certification:</b><p>Any 2–4 year degree; SHS graduate with good computer skills can qualify for entry-level encoding; TESDA Computer Programming NC II or Business Administration NC II; proficiency in MS Excel, Google Sheets, and basic database software required; typing speed of 40+ WPM typically expected.</p></div>
+        <div class="info-section"><b>Typical daily tasks:</b><p>Encoding and verifying data from physical forms, scanned documents, and surveys into digital databases; cross-checking data entries for accuracy and completeness; generating basic Excel reports and pivot tables; updating and maintaining records in database systems; coordinating with department heads on data requirements; flagging and resolving data discrepancies; preparing weekly data summary reports for supervisors.</p></div>
+        <div class="source">
+          <div class="txt">Sources (click to view details):</div>
+          <div class="btns">
+            <a href="https://ph.jobstreet.com/career-advice/role/data-encoder/salary" target="_blank" rel="noopener">JobStreet PH – Data Encoder Salary</a>
+            <a href="https://psa.gov.ph/content/careers" target="_blank" rel="noopener">PSA – Statistics Agency Careers</a>
+            <a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA – Computer Programming NC II</a>
+            <a href="https://ph.indeed.com/q-Data-Encoder-Analyst-jobs.html" target="_blank" rel="noopener">Indeed PH – Data Encoder Jobs</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /careers-grid TVL-ICT -->
+  </div><!-- /strand-group TVL-ICT -->
+
+</div><!-- /technical-section -->
+
+</main>
+
+<footer>
+  <p>© 2026 JCSGO Christian Academy — JCA Naviport Career Guidance Tool. Salary data based on JobStreet PH, Talent.com, NodeFlair, Indeed PH, and DOLE/BLE estimates for 2025–2026. For educational guidance purposes only.</p>
+</footer>
+
+<script>
+  function showTrack(track) {
+    document.getElementById('home-view').style.display = 'none';
+    var sections = document.querySelectorAll('.prof-section');
+    sections.forEach(function(s){ s.classList.remove('active'); });
+    var target = document.getElementById(track + '-section');
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function goHome(e) {
+    if (e) e.preventDefault();
+    document.querySelectorAll('.prof-section').forEach(function(s){ s.classList.remove('active'); });
+    document.getElementById('home-view').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function handleKey(e, track) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      showTrack(track);
+    }
+  }
+
+  function toggleMenu() {
+    var btn = document.getElementById('hamburger');
+    var nav = document.getElementById('mobile-nav');
+    btn.classList.toggle('open');
+    nav.classList.toggle('open');
+  }
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e) {
+    var nav = document.getElementById('mobile-nav');
+    var btn = document.getElementById('hamburger');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+      btn.classList.remove('open');
+    }
+  });
+</script>
 </body>
-
 </html>
